@@ -30,7 +30,7 @@ namespace SpaceInvaders.logic.Domain
             if (time.AddSeconds(3) < DateTime.Now)
             {
                 if (IsGrounded == true)
-                    Velocity.Y = -4;
+                    this.Velocity.AddVector2(new Vector2(0, -4));
                 time = DateTime.Now;
             }
 

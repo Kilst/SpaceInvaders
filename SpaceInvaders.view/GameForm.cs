@@ -73,22 +73,14 @@ namespace SpaceInvaders.view
         //public static extern int PeekMessage(out NativeMessage message, IntPtr window, uint filterMin, uint filterMax, uint remove);
         #endregion
 
-        //private Bitmap buffer;
-        //private Bitmap newBuffer;
-        Graphics graphics;
-        Graphics bufferGrph;
-        Graphics g;
         Thread thread;
         Thread keysThread;
         GameService game;
         DateTime time;
+        DrawBuffer drawBuffer;
 
         const int left = 100;
         const int right = 101;
-        //int direction = 100;
-        bool currentlyAnimating = false;
-        bool painting = false;
-        bool updatingPhysics = false;
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -97,10 +89,7 @@ namespace SpaceInvaders.view
             if (thread == null)
             {
                 btnStart.Hide();
-                // Window size
-                //newBuffer = new Bitmap(800, 400);
-                //buffer = new Bitmap(800, 400);
-                g = this.CreateGraphics();
+                drawBuffer = new DrawBuffer();
                 time = new DateTime();
                 game = new GameService();
                 thread = new Thread(new ThreadStart(GameLoop));
@@ -123,7 +112,6 @@ namespace SpaceInvaders.view
                 thread = null;
                 m_filter = null;
                 keysThread = null;
-                currentlyAnimating = false;
                 m_filter = new KeyMessageFilter();
                 Application.AddMessageFilter(m_filter);
                 goto Start;
@@ -138,10 +126,8 @@ namespace SpaceInvaders.view
                 // Timer for logic (40FPS)
                 if (time.AddMilliseconds(25) < DateTime.Now)
                 {
-                    updatingPhysics = true;
                     game.PhysicsUpdate();
                     time = DateTime.Now;
-                    updatingPhysics = false;
                     if (game.Level.Ship.IsZoning == true)
                     {
                         Thread.Sleep(1000);
@@ -149,227 +135,31 @@ namespace SpaceInvaders.view
                     }
                 }
 
-                if (painting == false)
-                {
-                    //PaintGame();
-                    //PaintMe();
-                }
-
                 // Calls GameForm_Paint
                 Invalidate();
 
                 //Thread.Sleep(10);
             }
-            if (game.Level.Ship.IsAlive == false)
+            DateTime timer = DateTime.Now;
+            while (game != null)
             {
-                ImageAnimator.Animate(game.Level.Coins[0].Bitmap, null);
-                ImageAnimator.Animate(game.Level.gameOver, new EventHandler(this.OnFrameChanged));
-                Invalidate();
+                if (timer.AddMilliseconds(25) < DateTime.Now)
+                {
+                    Invalidate();
+                    timer = DateTime.Now;
+                }
             }
-        }
-
-        public void AnimateImage(Bitmap animatedImage)
-        {
-            if (!currentlyAnimating)
-            {
-                //Begin the animation only once.
-                ImageAnimator.Animate(animatedImage, new EventHandler(this.OnFrameChanged));
-                currentlyAnimating = true;
-            }
-        }
-
-        private void OnFrameChanged(object o, EventArgs e)
-        {
-            //Force a call to the Paint event handler.
-            this.Invalidate();
-        }
-
-        private void PaintGame()
-        {
-            //painting = true;
-            //graphics = Graphics.FromImage(buffer);
-            //// Rendering graphics from here stops flickering (used in conjunction with double buffering)
-
-            ////graphics.Clear(Color.BlanchedAlmond);
-            
-            //// Render graphics
-            ////graphics.FillRectangle(new SolidBrush(Color.BlanchedAlmond), 0, 0, 1000, 1000);
-            //if (game != null)
-            //{
-            //    graphics.DrawImage(game.Level.backgroundImage, new Point(0, -70));
-
-            //    graphics.DrawImage(game.Level.backgroundImage, new Point(0, -70));
-            //    foreach (Platform platform in game.Level.Platforms)
-            //    {
-            //        //if (game.Ship.CheckDistance(platform) || platform.Width > 160)
-            //        //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.Position.X, (int)platform.Position.Y, platform.Width, platform.Height);
-            //        graphics.DrawImage(platform.Bitmap, (int)platform.Position.X,
-            //            (int)platform.Position.Y, platform.Width, platform.Height);
-            //    }
-
-            //    //for (int i = 0; i < game.Coins.Count; i++)
-            //    //{
-            //    //    if (game.Ship.CheckDistance(game.Coins[i]))
-            //    //    {
-            //    //        AnimateImage(game.Coins[i].Bitmap);
-            //    //        ImageAnimator.UpdateFrames();
-            //    //        //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
-            //    //        graphics.DrawImage(game.Coins[i].Bitmap, (int)game.Coins[i].Position.X,
-            //    //            (int)game.Coins[i].Position.Y, game.Coins[i].Width, game.Coins[i].Height);
-            //    //    }
-            //    //}
-
-            //    foreach (Coin coin in game.Level.Coins)
-            //    {
-            //        if (game.Level.Ship.CheckDistance(coin))
-            //        {
-            //            AnimateImage(game.Level.coinImage);
-            //            ImageAnimator.UpdateFrames();
-            //            //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
-            //            graphics.DrawImage(coin.Bitmap, (int)coin.Position.X,
-            //                (int)coin.Position.Y, coin.Width, coin.Height);
-            //        }
-            //    }
-
-            //    // Draw NPCs
-            //    foreach (Enemy enemy in game.Level.Enemies)
-            //    {
-            //        // Check to allow to render and calculate collisions
-            //        if (game.Level.Ship.CheckDistance(enemy) || enemy.GetType() == typeof(BulletBill))
-            //        {
-            //            graphics.DrawImage(enemy.FlipNPCImage(), (int)enemy.Position.X,
-            //                                (int)enemy.Position.Y, enemy.Width, enemy.Height);
-            //        }
-            //    }
-            //    // Draw Mario
-            //    graphics.DrawImage(game.Level.Ship.Bitmap, (int)game.Level.Ship.Position.X,
-            //            (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
-            //}
-
-            ////if (buffer != null)
-            ////{
-            ////    bufferGrph = Graphics.FromImage(newBuffer);
-            ////    bufferGrph.DrawImageUnscaled(buffer, Point.Empty);
-            ////}
-            ////buffer = newBuffer;
-            ////painting = false;
-        }
-
-        private void PaintMe()
-        {
-            //g.DrawImageUnscaled(buffer, Point.Empty);
-
-            //if (game.Level.Ship.Flipped)
-            //{
-            //    game.Level.Ship.Bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            //    game.Level.Ship.Flipped = false;
-            //}
-
-            //painting = false;
         }
 
         private void GameForm_Paint(object sender, PaintEventArgs e)
         {
-            //painting = true;
-            //if (game != null)
-            //    e.Graphics.DrawImageUnscaled(buffer, Point.Empty);
-            // Rendering graphics from here stops flickering (used in conjunction with double buffering)
-            graphics = e.Graphics;
-
-            //graphics.Clear(Color.BlanchedAlmond);
-
-            // Render graphics
-            if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
+            if (game != null)
             {
-                game.Level.Ship.FlipShipImage();
-                graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
-
-                foreach (WarpPipe pipe in game.Level.WarpPipes)
-                {
-                    graphics.DrawImage(pipe.Bitmap, (int)pipe.Position.X,
-                    (int)pipe.Position.Y, pipe.Width, pipe.Height);
-                }
-
-                foreach (Platform platform in game.Level.Platforms)
-                {
-                    graphics.DrawImage(platform.Bitmap, (int)platform.Position.X,
-                    (int)platform.Position.Y, platform.Width, platform.Height);
-                }
-
-                for (int i = 0; i < game.Level.DestroyableBricks.Count; i++)
-                {
-                    // Check to allow to render and calculate collisions
-                    if (game.Level.Ship.CheckDistance(game.Level.DestroyableBricks[i]))
-                    {
-                        graphics.DrawImage(game.Level.DestroyableBricks[i].Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
-                                            (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
-                    }
-                }
-
-                for (int i = 0; i < game.Level.Coins.Count; i++)
-                {
-                    if (game.Level.Ship.CheckDistance(game.Level.Coins[i]))
-                    {
-                        AnimateImage(game.Level.coinImage);
-                        ImageAnimator.UpdateFrames();
-                        //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
-                        graphics.DrawImage(game.Level.coinImage, (int)game.Level.Coins[i].Position.X,
-                            (int)game.Level.Coins[i].Position.Y, game.Level.Coins[i].Width, game.Level.Coins[i].Height);
-                    }
-                }
-
-                //foreach (Coin coin in game.Coins)
-                //{
-                //    if (game.Ship.CheckDistance(coin))
-                //    {
-                //        AnimateImage(coin.Bitmap);
-                //        ImageAnimator.UpdateFrames();
-                //        //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
-                //        graphics.DrawImage(coin.Bitmap, (int)coin.Position.X,
-                //            (int)coin.Position.Y, coin.Width, coin.Height);
-                //    }
-                //}
-
-                for (int i = 0; i < game.Level.Enemies.Count; i++)
-                {
-                    // Check to allow to render and calculate collisions
-                    if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || game.Level.Enemies[i].GetType() == typeof(BulletBill))
-                    {
-                        Enemy enemy = (Enemy)game.Level.Enemies[i];
-                        graphics.DrawImage(enemy.FlipNPCImage(), (int)enemy.Position.X,
-                                            (int)enemy.Position.Y, enemy.Width, enemy.Height);
-                    }
-                }
-                // Draw NPCs
-                //foreach (Enemy enemy in game.Enemies)
-                //{
-                //    // Check to allow to render and calculate collisions
-                //    if (game.Ship.CheckDistance(enemy) || enemy.GetType() == typeof(BulletBill))
-                //    {
-                //        graphics.DrawImage(FlipNPCImage(enemy.Bitmap, (Enemy)enemy), (int)enemy.Position.X,
-                //                            (int)enemy.Position.Y, enemy.Width, enemy.Height);
-                //    }
-                //}
-                // Draw Mario
-                graphics.DrawImage(game.Level.Ship.Bitmap, (int)game.Level.Ship.Position.X,
-                        (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
-            }
-            else if (game != null)
-            {
-                graphics.Clear(Color.Black);
-                if (game.Level.Ship.IsAlive == false)
-                {
+                if (game.Level.Ship.IsAlive == false && !btnStart.Visible)
                     btnStart.Show();
-                    AnimateImage(game.Level.gameOver);
-                    ImageAnimator.UpdateFrames();
-                    //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
-                    graphics.DrawImage(game.Level.gameOver, 0, 0, 700, 300);
-                    Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-                    graphics.FillRectangle(brush, 560, 260, 140, 40);
-                    brush.Dispose();
-                }
+                e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
+                // Rendering graphics from here stops flickering (used in conjunction with double buffering)
             }
-            //painting = false;
         }
 
         // Keypresses for moving

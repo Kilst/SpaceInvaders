@@ -68,9 +68,11 @@ namespace SpaceInvaders.service
                 if (enemy.CheckCollisions == true || enemy.GetType() == typeof(BulletBill))
                 {
                     enemy.Move();
-                    enemy.CollisionCheck(Level.Platforms);
+
+                    // Order is specific here
                     enemy.CollisionCheck(Level.DestroyableBricks);
                     enemy.CollisionCheck(Level.WarpPipes);
+                    enemy.CollisionCheck(Level.Platforms);
                 }
                 // Check Bullet Bill object exists
                 if (enemy.GetType() == typeof(BulletBill))
@@ -86,8 +88,7 @@ namespace SpaceInvaders.service
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
-            Level.Ship.EnemyCollisionCheckY(Level.DestroyableBricks);
-            Level.Ship.EnemyCollisionCheckX(Level.DestroyableBricks);
+            Level.Ship.CollisionCheck(Level.DestroyableBricks);
             Level.Ship.CollisionCheck(Level.WarpPipes);
             Level.Ship.CollisionCheck(Level.Coins);
             Level.Ship.CollisionCheck(Level.Enemies);
@@ -160,30 +161,6 @@ namespace SpaceInvaders.service
                 enemy.MovePosition(direction);
                 //enemy.GetBounds();
             }
-        }
-
-        public string CheckType(GameObject obj)
-        {
-            if (obj.GetType() == typeof(BulletBill))
-            {
-                return "BulletBill";
-            }
-            if (obj.GetType() == typeof(Goomba))
-            {
-                return "Goomba";
-            }
-            if (obj.GetType() == typeof(KoopaGreen))
-            {
-                return "KoopaGreen";
-            }
-
-            return "GameObject";
-        }
-
-        public Bitmap FlipNpcImage(GameObject npc)
-        {
-            Enemy enemy = (Enemy)npc;
-            return enemy.FlipNPCImage();
         }
 
         public void End()

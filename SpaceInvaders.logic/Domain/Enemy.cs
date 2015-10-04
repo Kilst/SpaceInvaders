@@ -98,7 +98,7 @@ namespace SpaceInvaders.logic.Domain
                     || list[0].GetType() == typeof(DestroyableBrick))
                 {
                     CollisionCheckY(list);
-                    CollisionCheckX(list);
+                    //CollisionCheckX(list);
 
                     // Ground platforms must be first in xml, otherwise we fall throug floor,
                     // when colliding with another object whilr on ground
@@ -106,7 +106,7 @@ namespace SpaceInvaders.logic.Domain
             }
         }
 
-        private void CollisionCheckX(List<GameObject> list)
+        private new void CollisionCheckX(List<GameObject> list)
         {
             foreach (Platform platform in list)
             {

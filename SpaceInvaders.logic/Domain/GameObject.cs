@@ -199,7 +199,7 @@ namespace SpaceInvaders.logic.Domain
                 {
                     CollisionCheckY(list);
                     CollisionCheckX(list);
-
+                    return;
                     // Ground platforms must be first in xml, otherwise we fall throug floor,
                     // when colliding with another object whilr on ground
                 }
@@ -216,9 +216,9 @@ namespace SpaceInvaders.logic.Domain
                        BottomRight.Y > platform.TopLeft.Y)
                 {
 
-                    if (Position.X < platform.TopLeft.X)
+                    if (PreviousPosition.X < platform.TopLeft.X)
                         Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (Position.X + Width > platform.TopRight.X)
+                    else if (PreviousPosition.X + Width > platform.TopRight.X)
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
@@ -329,12 +329,12 @@ namespace SpaceInvaders.logic.Domain
         //}
         #endregion
 
-        public void Y_XCheck(Platform platform)
+        private void Y_XCheck(Platform platform)
         {
             // Hack solution that works
-            if (Position.X < platform.TopLeft.X)
+            if (PreviousPosition.X < platform.TopLeft.X)
                 Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-            else if (Position.X + Width > platform.TopRight.X)
+            else if (PreviousPosition.X + Width > platform.TopRight.X)
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             //PreviousPosition = Position;
             Velocity.X = Velocity.X * 0.5;

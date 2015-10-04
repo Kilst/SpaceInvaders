@@ -138,6 +138,8 @@ namespace SpaceInvaders.logic.Domain
                             WarpLocation = platform.WarpLoc;
                             WarpZoneName = platform.WarpZoneName;
                             IsZoning = true;
+                            Velocity.X = 0;
+                            Velocity.Y = 0;
                         }
                         IsGrounded = true;
                     }
@@ -209,12 +211,12 @@ namespace SpaceInvaders.logic.Domain
                 if (Position.X < platform.TopRight.X &&
                         TopRight.X > platform.TopLeft.X &&
                         Position.Y < platform.BottomRight.Y &&
-                        BottomRight.Y > platform.TopLeft.Y)
+                        BottomRight.Y > platform.TopLeft.Y + 1)
                 {
 
-                    if (Position.X + Width < platform.TopLeft.X)
+                    if (PreviousPosition.X < platform.TopLeft.X)
                         Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (Position.X > platform.TopRight.X)
+                    else if (PreviousPosition.X + Width > platform.TopRight.X)
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
@@ -226,21 +228,21 @@ namespace SpaceInvaders.logic.Domain
 
         private void EnemyY_XCheck(GameObject platform)
         {
-            // Hack solution that works
-            if (Position.X + Width < platform.TopLeft.X)
+            if (Position.X < platform.TopRight.X &&
+                        TopRight.X > platform.TopLeft.X &&
+                        Position.Y < platform.BottomRight.Y &&
+                        BottomRight.Y > platform.TopLeft.Y + 1)
             {
-                //Position.Y = PreviousPosition.Y;
-                Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
+                // Hack solution that works
+                if (PreviousPosition.X < platform.TopLeft.X)
+                    Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
+                else if (PreviousPosition.X + Width > platform.TopRight.X)
+                    Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
+                Velocity.X = Velocity.X * 0.5;
+                if (platform.GetType() != typeof(DestroyableBrick))
+                    IsAlive = false;
+                GetBounds();
             }
-            else if (Position.X > platform.TopRight.X)
-            {
-                //Position.Y = PreviousPosition.Y;
-                Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-            }
-            Velocity.X = Velocity.X * 0.5;
-            if (platform.GetType() != typeof(DestroyableBrick))
-                IsAlive = false;
-            GetBounds();
         }
 
         public void EnemyCollisionCheckY(List<GameObject> list)
