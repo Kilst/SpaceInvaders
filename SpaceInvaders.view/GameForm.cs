@@ -96,6 +96,7 @@ namespace SpaceInvaders.view
         Start:
             if (thread == null)
             {
+                btnStart.Hide();
                 // Window size
                 //newBuffer = new Bitmap(800, 400);
                 //buffer = new Bitmap(800, 400);
@@ -115,6 +116,7 @@ namespace SpaceInvaders.view
                 {
                     // Needed to let the game end
                 }
+                game.Level.Dispose();
                 game.End();
                 game = null;
                 //game.Level.Ship.Direction = left;
@@ -143,7 +145,7 @@ namespace SpaceInvaders.view
                     if (game.Level.Ship.IsZoning == true)
                     {
                         Thread.Sleep(1000);
-                        newLevel = game.Update();
+                        newLevel = game.UpdateLevel();
                     }
                 }
 
@@ -158,9 +160,12 @@ namespace SpaceInvaders.view
 
                 //Thread.Sleep(10);
             }
-
-            MessageBox.Show("Game Over!");
-
+            if (game.Level.Ship.IsAlive == false)
+            {
+                ImageAnimator.Animate(game.Level.Coins[0].Bitmap, null);
+                ImageAnimator.Animate(game.Level.gameOver, new EventHandler(this.OnFrameChanged));
+                Invalidate();
+            }
         }
 
         public void AnimateImage(Bitmap animatedImage)
@@ -176,7 +181,7 @@ namespace SpaceInvaders.view
         private void OnFrameChanged(object o, EventArgs e)
         {
             //Force a call to the Paint event handler.
-            //this.Invalidate();
+            this.Invalidate();
         }
 
         private void PaintGame()
@@ -274,10 +279,10 @@ namespace SpaceInvaders.view
             //graphics.Clear(Color.BlanchedAlmond);
 
             // Render graphics
-            if (game != null && !game.Level.Ship.IsZoning)
+            if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
                 game.Level.Ship.FlipShipImage();
-                graphics.DrawImage(game.Level.backgroundImage, new Point(0, -70));
+                graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
 
                 foreach (WarpPipe pipe in game.Level.WarpPipes)
                 {
@@ -289,6 +294,16 @@ namespace SpaceInvaders.view
                 {
                     graphics.DrawImage(platform.Bitmap, (int)platform.Position.X,
                     (int)platform.Position.Y, platform.Width, platform.Height);
+                }
+
+                for (int i = 0; i < game.Level.DestroyableBricks.Count; i++)
+                {
+                    // Check to allow to render and calculate collisions
+                    if (game.Level.Ship.CheckDistance(game.Level.DestroyableBricks[i]))
+                    {
+                        graphics.DrawImage(game.Level.DestroyableBricks[i].Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
+                                            (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                    }
                 }
 
                 for (int i = 0; i < game.Level.Coins.Count; i++)
@@ -338,6 +353,21 @@ namespace SpaceInvaders.view
                 // Draw Mario
                 graphics.DrawImage(game.Level.Ship.Bitmap, (int)game.Level.Ship.Position.X,
                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
+            }
+            else if (game != null)
+            {
+                graphics.Clear(Color.Black);
+                btnStart.Show();
+                if (game.Level.Ship.IsAlive == false)
+                {
+                    AnimateImage(game.Level.gameOver);
+                    ImageAnimator.UpdateFrames();
+                    //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);
+                    graphics.DrawImage(game.Level.gameOver, 0, 0, 700, 300);
+                    Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+                    graphics.FillRectangle(brush, 560, 260, 140, 40);
+                    brush.Dispose();
+                }
             }
             //painting = false;
         }

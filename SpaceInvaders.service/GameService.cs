@@ -25,7 +25,7 @@ namespace SpaceInvaders.service
             previous = Level;
         }
 
-        public bool Update()
+        public bool UpdateLevel()
         {
             if (Level.Ship.IsZoning == true)
             {
@@ -56,6 +56,7 @@ namespace SpaceInvaders.service
 
         public void PhysicsUpdate()
         {
+            Level.Ship.FallDeathCheck();
             int bulletBills = 0;
             // TODO: Fix collision bugs
             Level.Ship.Move();
@@ -67,6 +68,7 @@ namespace SpaceInvaders.service
                 {
                     enemy.Move();
                     enemy.CollisionCheck(Level.Platforms);
+                    enemy.CollisionCheck(Level.DestroyableBricks);
                     enemy.CollisionCheck(Level.WarpPipes);
                 }
                 // Check Bullet Bill object exists
@@ -83,6 +85,7 @@ namespace SpaceInvaders.service
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
+            Level.Ship.CollisionCheck(Level.DestroyableBricks);
             Level.Ship.CollisionCheck(Level.WarpPipes);
             Level.Ship.CollisionCheck(Level.Coins);
             Level.Ship.CollisionCheck(Level.Enemies);
@@ -123,6 +126,11 @@ namespace SpaceInvaders.service
         {
             // Move all non-player objects on the screen
             foreach (Platform platform in Level.Platforms)
+            {
+                platform.MovePosition(direction);
+                //platform.GetBounds();
+            }
+            foreach (DestroyableBrick platform in Level.DestroyableBricks)
             {
                 platform.MovePosition(direction);
                 //platform.GetBounds();

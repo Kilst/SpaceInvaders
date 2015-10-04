@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Domain\BulletBill.cs" />
     <Compile Include="Domain\Coin.cs" />
+    <Compile Include="Domain\DestroyableBrick.cs" />
     <Compile Include="Domain\Enemy.cs" />
     <Compile Include="Domain\GameObject.cs" />
     <Compile Include="Domain\iCollisions.cs" />

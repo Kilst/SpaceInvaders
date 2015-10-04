@@ -56,6 +56,12 @@ namespace SpaceInvaders.logic.Domain
             }
         }
 
+        public void FallDeathCheck()
+        {
+            if (Position.Y > 500)
+                IsAlive = false;
+        }
+
         private void CoinCollisionCheck(List<GameObject> list)
         {
             foreach (Coin coin in list)
@@ -187,12 +193,18 @@ namespace SpaceInvaders.logic.Domain
                     //EnemyCollisionCheckX(list);
                     return;
                 }
+                else if (list[0].GetType().Equals(typeof(DestroyableBrick)))
+                {
+                    EnemyCollisionCheckY(list);
+                    EnemyCollisionCheckX(list);
+                    return;
+                }
             }
         }
 
         private void EnemyCollisionCheckX(List<GameObject> list)
         {
-            foreach (Enemy platform in list)
+            foreach (GameObject platform in list)
             {
                 if (Position.X < platform.TopRight.X &&
                        TopRight.X > platform.TopLeft.X &&
@@ -206,13 +218,14 @@ namespace SpaceInvaders.logic.Domain
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
-                    IsAlive = false;
+                    if (platform.GetType() != typeof(DestroyableBrick))
+                        IsAlive = false;
                     return;
                 }
             }
         }
 
-        private void EnemyY_XCheck(Enemy platform)
+        private void EnemyY_XCheck(GameObject platform)
         {
             // Hack solution that works
             if (PreviousPosition.X + 2 < platform.TopLeft.X)
@@ -224,13 +237,14 @@ namespace SpaceInvaders.logic.Domain
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             }
             Velocity.X = Velocity.X * 0.1;
-            IsAlive = false;
+            if (platform.GetType() != typeof(DestroyableBrick))
+                IsAlive = false;
             GetBounds();
         }
 
         private void EnemyCollisionCheckY(List<GameObject> list)
         {
-            foreach (Enemy platform in list)
+            foreach (GameObject platform in list)
             {
                 if (Position.X < platform.TopRight.X &&
                        TopRight.X > platform.TopLeft.X &&
@@ -248,18 +262,23 @@ namespace SpaceInvaders.logic.Domain
                     if ((BottomLeft.Y) > platform.TopLeft.Y
                         && (BottomLeft.Y) < platform.TopLeft.Y + (platform.Height / 2))
                     {
-                        // Disable enemy
-                        list.Remove(platform);
-                        IsGrounded = false;
-                        Velocity.Y = -4;
-                        Position = PreviousPosition;
+                        if (platform.GetType() != typeof(DestroyableBrick))
+                        {
+                            // Disable enemy
+                            list.Remove(platform);
+                            IsGrounded = false;
+                            Velocity.Y = -4;
+                            Position = PreviousPosition;
+                            return;
+                        }
+                        IsGrounded = true;
                         GetBounds();
-                        return;
                     }
-
-                    IsGrounded = false;
-                    Velocity.Y = Velocity.Y * -1;
-                    IsAlive = false;
+                    else
+                        IsGrounded = false;
+                    Velocity.Y = 0;
+                    if(platform.GetType() != typeof(DestroyableBrick))
+                        IsAlive = false;
 
                     if (PreviousPosition.Y + 1 <= platform.TopLeft.Y)
                     {
@@ -267,8 +286,8 @@ namespace SpaceInvaders.logic.Domain
                     }
                     else
                     {
+                        list.Remove(platform);
                         Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
-                        Velocity.Y = 0;
                     }
                     //Position.Y = PreviousPosition.Y;
                     GetBounds();

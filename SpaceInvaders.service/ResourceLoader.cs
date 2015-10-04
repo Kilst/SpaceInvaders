@@ -15,8 +15,10 @@ namespace SpaceInvaders.service
         public static void LoadBitmaps(Level level)
         {
             // Load bitmaps
+            level.gameOver = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\gameOver.gif");
             GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
+            level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.png");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
             level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");
             level.coinImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioCoin.gif");
@@ -57,6 +59,9 @@ namespace SpaceInvaders.service
                         break;
                     case "WarpPipe":
                         level.WarpPipes.Add(new WarpPipe(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.marioPipe), new Vector2(int.Parse(element.Attribute(XName.Get("TeleportX")).Value), int.Parse(element.Attribute(XName.Get("TeleportY")).Value)), element.Attribute(XName.Get("WarpZoneName")).Value));
+                        break;
+                    case "DestroyableBrick":
+                        level.DestroyableBricks.Add(new DestroyableBrick(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.questionBlock)));
                         break;
                     case "Goomba":
                         level.Enemies.Add(new Goomba(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("MaxVelX")).Value), int.Parse(element.Attribute(XName.Get("MaxVelY")).Value)), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), int.Parse(element.Attribute(XName.Get("MinPatrolX")).Value), int.Parse(element.Attribute(XName.Get("MaxPatrolX")).Value), new Bitmap(level.npcImage)));

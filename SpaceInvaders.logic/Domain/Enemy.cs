@@ -89,6 +89,23 @@ namespace SpaceInvaders.logic.Domain
             Move();
         }
 
+        public override void CollisionCheck(List<GameObject> list)
+        {
+            if (list.Count > 0)
+            {
+                if (list[0].GetType() == typeof(Platform)
+                    || list[0].GetType() == typeof(Pipe)
+                    || list[0].GetType() == typeof(DestroyableBrick))
+                {
+                    CollisionCheckY(list);
+                    CollisionCheckX(list);
+
+                    // Ground platforms must be first in xml, otherwise we fall throug floor,
+                    // when colliding with another object whilr on ground
+                }
+            }
+        }
+
         private void CollisionCheckX(List<GameObject> list)
         {
             foreach (Platform platform in list)

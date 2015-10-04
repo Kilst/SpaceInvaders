@@ -49,3 +49,5 @@ C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\Space
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.Properties.Resources.resources
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csproj.GenerateResource.Cache
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\cloudsBG.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\gameOver.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\questionBlock.png

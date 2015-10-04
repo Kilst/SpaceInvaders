@@ -6,18 +6,25 @@
       <Background Name="skyBackground.png"></Background>
     </Backgrounds>
 
+    <DestroyableBricks>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="445" Y="180"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="960" Y="180"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="1000" Y="180"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="1040" Y="180"></DestroyableBrick>
+    </DestroyableBricks>
+
     <Platforms>
       <Platform Width="30" Height="280" Mass="0" X="0" Y="0"></Platform>
       <Platform Width="1720" Height="100" Mass="0" X="0" Y="280"></Platform>
       <Platform Width="30" Height="30" Mass="0" X="70" Y="225"></Platform>
       <Platform Width="30" Height="30" Mass="0" X="550" Y="100"></Platform>
       <Platform Width="30" Height="30" Mass="0" X="498" Y="140"></Platform>
-      <Platform Width="30" Height="30" Mass="0" X="445" Y="180"></Platform>
+      <!--<Platform Width="30" Height="30" Mass="0" X="445" Y="180"></Platform>-->
       <Platform Width="30" Height="30" Mass="0" X="390" Y="225"></Platform>
 
       <Platform Width="300" Height="5" Mass="0" X="110" Y="140"></Platform>
 
-      <Platform Width="100" Height="30" Mass="0" X="960" Y="180"></Platform>
+      <!--<Platform Width="100" Height="30" Mass="0" X="960" Y="180"></Platform>-->
       <Platform Width="100" Height="30" Mass="0" X="1120" Y="130"></Platform>
       <Platform Width="100" Height="30" Mass="0" X="1280" Y="100"></Platform>
       <Platform Width="100" Height="30" Mass="0" X="1440" Y="130"></Platform>
@@ -148,6 +155,13 @@
       <Background Name="cloudsBG.png"></Background>
     </Backgrounds>
 
+    <DestroyableBricks>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="430" Y="80"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="920" Y="100"></DestroyableBrick>
+      <!--<DestroyableBrick Width="30" Height="30" Mass="0" X="1000" Y="130"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="1040" Y="130"></DestroyableBrick>-->
+    </DestroyableBricks>
+
     <Platforms>
 
       <Pipe Width="100" Height="30" Mass="0" X="960" Y="200"></Pipe>
@@ -165,13 +179,14 @@
       <Pipe Width="50" Height="100" Mass="0" X="220" Y="180"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="320" Y="220"></Pipe>
       <Pipe Width="50" Height="180" Mass="0" X="420" Y="170"></Pipe>
-      <Pipe Width="150" Height="100" Mass="0" X="520" Y="140"></Pipe>
+      <Pipe Width="25" Height="25" Mass="0" X="470" Y="255"></Pipe>
+      <Pipe Width="150" Height="150" Mass="0" X="520" Y="140"></Pipe>
 
       <Pipe Width="50" Height="100" Mass="0" X="718" Y="210"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="820" Y="180"></Pipe>
 
       <WarpPipe Width="50" Height="50" Mass="0" X="1945" Y="0" TeleportX="2020" TeleportY="-230" WarpZoneName="Level1">></WarpPipe>
-      
+
       <Platform Width="720" Height="100" Mass="0" X="0" Y="280"></Platform>
 
     </Platforms>
@@ -197,33 +212,33 @@
     </Enemies>
 
     <Coins>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="110"></Coin>
     </Coins>
 
   </Level2>

@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace SpaceInvaders.logic.Domain
 {
-    public abstract class GameObject: iPhysics, iCollisions
+    public abstract class GameObject: iPhysics, iCollisions, IDisposable
     {
         private const double gravity = 0.3;
 
@@ -33,6 +33,11 @@ namespace SpaceInvaders.logic.Domain
         public Vector2 TopRight { get; set; }
         public Vector2 BottomLeft { get; set; }
         public Vector2 BottomRight { get; set; }
+
+        public void Dispose()
+        {
+            Bitmap = null;
+        }
 
         #region 8-point bounding-box
         //public Vector2 MiddleTopLeft { get; set; }
@@ -201,7 +206,7 @@ namespace SpaceInvaders.logic.Domain
             }
         }
 
-        private void CollisionCheckX(List<GameObject> list)
+        public void CollisionCheckX(List<GameObject> list)
         {
             foreach (Platform platform in list)
             {
@@ -324,7 +329,7 @@ namespace SpaceInvaders.logic.Domain
         //}
         #endregion
 
-        private void Y_XCheck(Platform platform)
+        public void Y_XCheck(Platform platform)
         {
             // Hack solution that works
             if (PreviousPosition.X < platform.TopLeft.X)
@@ -340,7 +345,7 @@ namespace SpaceInvaders.logic.Domain
             GetBounds();
         }
 
-        private void CollisionCheckY(List<GameObject> list)
+        public void CollisionCheckY(List<GameObject> list)
         {
             foreach (Platform platform in list)
             {

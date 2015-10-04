@@ -165,7 +165,8 @@
       <Pipe Width="50" Height="100" Mass="0" X="220" Y="180"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="320" Y="220"></Pipe>
       <Pipe Width="50" Height="180" Mass="0" X="420" Y="170"></Pipe>
-      <Pipe Width="150" Height="100" Mass="0" X="520" Y="140"></Pipe>
+	  <Pipe Width="25" Height="25" Mass="0" X="470" Y="255"></Pipe>
+      <Pipe Width="150" Height="150" Mass="0" X="520" Y="140"></Pipe>
 
       <Pipe Width="50" Height="100" Mass="0" X="718" Y="210"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="820" Y="180"></Pipe>
@@ -197,33 +198,33 @@
     </Enemies>
 
     <Coins>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="580" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="540" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="610" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="570" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="640" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="600" Y="110"></Coin>
 
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="65"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="95"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="125"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="155"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="185"></Coin>
-      <Coin Width="25" Height="25" Mass="0" X="670" Y="215"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="-40"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="-10"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="20"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="50"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="80"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="630" Y="110"></Coin>
     </Coins>
 
   </Level2>
