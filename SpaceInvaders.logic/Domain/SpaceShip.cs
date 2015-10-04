@@ -177,8 +177,6 @@ namespace SpaceInvaders.logic.Domain
                     return;
                 }
 
-                base.CollisionCheck(list);
-
                 if (list[0].GetType().Equals(typeof(Coin)))
                 {
                     CoinCollisionCheck(list);
@@ -199,28 +197,29 @@ namespace SpaceInvaders.logic.Domain
                     EnemyCollisionCheckX(list);
                     return;
                 }
+                else
+                    base.CollisionCheck(list);
             }
         }
 
-        private void EnemyCollisionCheckX(List<GameObject> list)
+        public void EnemyCollisionCheckX(List<GameObject> list)
         {
             foreach (GameObject platform in list)
             {
                 if (Position.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       Position.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
+                        TopRight.X > platform.TopLeft.X &&
+                        Position.Y < platform.BottomRight.Y &&
+                        BottomRight.Y > platform.TopLeft.Y)
                 {
 
-                    if (PreviousPosition.X < platform.TopLeft.X)
+                    if (Position.X + Width < platform.TopLeft.X)
                         Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else
+                    else if (Position.X > platform.TopRight.X)
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
                     if (platform.GetType() != typeof(DestroyableBrick))
                         IsAlive = false;
-                    return;
                 }
             }
         }
@@ -228,21 +227,23 @@ namespace SpaceInvaders.logic.Domain
         private void EnemyY_XCheck(GameObject platform)
         {
             // Hack solution that works
-            if (PreviousPosition.X + 2 < platform.TopLeft.X)
+            if (Position.X + Width < platform.TopLeft.X)
             {
+                //Position.Y = PreviousPosition.Y;
                 Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
             }
-            else if (PreviousPosition.X + Width - 2 > platform.TopRight.X)
+            else if (Position.X > platform.TopRight.X)
             {
+                //Position.Y = PreviousPosition.Y;
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             }
-            Velocity.X = Velocity.X * 0.1;
+            Velocity.X = Velocity.X * 0.5;
             if (platform.GetType() != typeof(DestroyableBrick))
                 IsAlive = false;
             GetBounds();
         }
 
-        private void EnemyCollisionCheckY(List<GameObject> list)
+        public void EnemyCollisionCheckY(List<GameObject> list)
         {
             foreach (GameObject platform in list)
             {
@@ -251,7 +252,7 @@ namespace SpaceInvaders.logic.Domain
                        Position.Y < platform.BottomRight.Y &&
                        BottomRight.Y > platform.TopLeft.Y)
                 {
-                    if (PreviousPosition.X + Width - 2 < platform.TopLeft.X
+                    if (PreviousPosition.X + Width < platform.TopLeft.X
                         || PreviousPosition.X > platform.TopRight.X)
                     {
                         EnemyY_XCheck(platform);
@@ -269,10 +270,10 @@ namespace SpaceInvaders.logic.Domain
                             IsGrounded = false;
                             Velocity.Y = -4;
                             Position = PreviousPosition;
+                            GetBounds();
                             return;
                         }
                         IsGrounded = true;
-                        GetBounds();
                     }
                     else
                         IsGrounded = false;
@@ -280,7 +281,7 @@ namespace SpaceInvaders.logic.Domain
                     if(platform.GetType() != typeof(DestroyableBrick))
                         IsAlive = false;
 
-                    if (PreviousPosition.Y + 1 <= platform.TopLeft.Y)
+                    if (PreviousPosition.Y + Height - 1 <= platform.TopLeft.Y)
                     {
                         Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                     }

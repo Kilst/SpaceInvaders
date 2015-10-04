@@ -1,14 +1,7 @@
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.service.dll
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.service.pdb
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.logic.dll
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.logic.pdb
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.csprojResolveAssemblyReference.cache
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.dll
-C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.csprojResolveAssemblyReference.cache
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.service.dll
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.service.pdb
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.logic.dll
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\bin\Debug\SpaceInvaders.logic.pdb
-C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.csprojResolveAssemblyReference.cache
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.dll
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.service\obj\Debug\SpaceInvaders.service.pdb

@@ -86,7 +86,8 @@ namespace SpaceInvaders.service
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
-            Level.Ship.CollisionCheck(Level.DestroyableBricks);
+            Level.Ship.EnemyCollisionCheckY(Level.DestroyableBricks);
+            Level.Ship.EnemyCollisionCheckX(Level.DestroyableBricks);
             Level.Ship.CollisionCheck(Level.WarpPipes);
             Level.Ship.CollisionCheck(Level.Coins);
             Level.Ship.CollisionCheck(Level.Enemies);

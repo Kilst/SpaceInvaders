@@ -216,9 +216,9 @@ namespace SpaceInvaders.logic.Domain
                        BottomRight.Y > platform.TopLeft.Y)
                 {
 
-                    if (PreviousPosition.X < platform.TopLeft.X)
+                    if (Position.X < platform.TopLeft.X)
                         Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (PreviousPosition.X + Width > platform.TopRight.X)
+                    else if (Position.X + Width > platform.TopRight.X)
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
@@ -332,9 +332,9 @@ namespace SpaceInvaders.logic.Domain
         public void Y_XCheck(Platform platform)
         {
             // Hack solution that works
-            if (PreviousPosition.X < platform.TopLeft.X)
+            if (Position.X < platform.TopLeft.X)
                 Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-            else if (PreviousPosition.X + Width > platform.TopRight.X)
+            else if (Position.X + Width > platform.TopRight.X)
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             //PreviousPosition = Position;
             Velocity.X = Velocity.X * 0.5;
