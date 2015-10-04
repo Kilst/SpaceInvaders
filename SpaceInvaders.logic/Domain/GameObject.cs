@@ -362,8 +362,8 @@ namespace SpaceInvaders.logic.Domain
                         }
 
 
-                        if ((BottomLeft.Y) > platform.TopLeft.Y
-                            && (BottomLeft.Y) < platform.TopLeft.Y + (platform.Height / 5))
+                        if ((BottomLeft.Y) >= platform.TopLeft.Y
+                            && (BottomLeft.Y) <= platform.TopLeft.Y + (platform.Height / 5))
                         {
                             IsGrounded = true;
                             //Position.Y = PreviousPosition.Y + (platform.Position.Y - PreviousPosition.Y - Height);
@@ -381,7 +381,7 @@ namespace SpaceInvaders.logic.Domain
                             //IsGrounded = true;
                             Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                         }
-                        else
+                        else if (PreviousPosition.Y + Height >= platform.BottomRight.Y)
                         {
                             Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
                             //IsGrounded = false;

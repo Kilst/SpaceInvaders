@@ -143,12 +143,12 @@ namespace SpaceInvaders.logic.Domain
 
                     Velocity.Y = 0;
 
-                    if (PreviousPosition.Y + 1 <= platform.TopLeft.Y)
+                    if (PreviousPosition.Y <= platform.TopLeft.Y)
                     {
                         //IsGrounded = true;
                         Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                     }
-                    else
+                    else if (PreviousPosition.Y + Height >= platform.BottomRight.Y)
                     {
                         Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
                         //IsGrounded = false;
