@@ -15,7 +15,10 @@ namespace SpaceInvaders.service
         public static void LoadBitmaps(Level level)
         {
             // Load bitmaps
-            level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\skyBackground.png");
+            if (level.Name == "Level1")
+                level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\skyBackground.png");
+            if (level.Name == "Level2")
+                level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\cloudsBG.png");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
             level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");

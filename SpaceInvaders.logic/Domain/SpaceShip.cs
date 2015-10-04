@@ -85,31 +85,6 @@ namespace SpaceInvaders.logic.Domain
             GetBounds();
         }
 
-        private void WarpPipeCollisionChecks(List<GameObject> list)
-        {
-            foreach (WarpPipe warpPipe in list)
-            {
-                warpPipe.GetBounds();
-                if (TopLeft.X < warpPipe.TopRight.X &&
-                       TopRight.X > warpPipe.TopLeft.X &&
-                       TopLeft.Y < warpPipe.BottomRight.Y &&
-                       BottomRight.Y > warpPipe.TopLeft.Y)
-                {
-                    if ((BottomLeft.Y) > warpPipe.TopLeft.Y
-                        && (BottomLeft.Y) < warpPipe.TopLeft.Y + (warpPipe.Height / 2))
-                    {
-                        if (IsDucking == true)
-                        {
-                            WarpLocation = warpPipe.WarpLoc;
-                            WarpZoneName = warpPipe.WarpZoneName;
-                            IsZoning = true;
-                        }
-                        return;
-                    }
-                }
-            }
-        }
-
         private void WarpPipeCollisionCheckX(List<GameObject> list)
         {
             foreach (WarpPipe warpPipe in list)

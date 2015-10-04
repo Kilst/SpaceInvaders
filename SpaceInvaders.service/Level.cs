@@ -30,13 +30,13 @@ namespace SpaceInvaders.service
 
         public Level(string level)
         {
+            Name = level;
             ResourceLoader.LoadBitmaps(this);
             Ship = new SpaceShip(20, 30, 0, new Vector2(3, 8), new Vector2(120, 100), shipImage);
             Enemies = new List<GameObject>();
             Platforms = new List<GameObject>();
             WarpPipes = new List<GameObject>();
             Coins = new List<GameObject>();
-            Name = level;
 
             // GetEnemies
             ResourceLoader.GetGameObjects(this, level, "Enemies");

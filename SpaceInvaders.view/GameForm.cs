@@ -142,8 +142,8 @@ namespace SpaceInvaders.view
                     updatingPhysics = false;
                     if (game.Level.Ship.IsZoning == true)
                     {
+                        Thread.Sleep(1000);
                         newLevel = game.Update();
-                        Thread.Sleep(150);
                     }
                 }
 
@@ -274,7 +274,7 @@ namespace SpaceInvaders.view
             //graphics.Clear(Color.BlanchedAlmond);
 
             // Render graphics
-            if (game != null)
+            if (game != null && !game.Level.Ship.IsZoning)
             {
                 game.Level.Ship.FlipShipImage();
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, -70));

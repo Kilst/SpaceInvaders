@@ -25,9 +25,9 @@
       <Platform Width="150" Height="100" Mass="0" X="2170" Y="240"></Platform>
 
       <Pipe Width="50" Height="50" Mass="0" X="2220" Y="190"></Pipe>
-      <WarpPipe Width="50" Height="50" Mass="0" X="210" Y="230" TeleportX="2220" TeleportY="190" WarpZoneName="Level2"></WarpPipe>
+      <WarpPipe Width="50" Height="50" Mass="0" X="210" Y="230" TeleportX="0" TeleportY="-230" WarpZoneName="Level2"></WarpPipe>
       <Pipe Width="50" Height="50" Mass="0" X="780" Y="230"></Pipe>
-      <Pipe Width="50" Height="50" Mass="0" X="1650" Y="235"></Pipe>
+      <Pipe Width="50" Height="50" Mass="0" X="1650" Y="230"></Pipe>
     </Platforms>
 
     <Enemies>
@@ -153,7 +153,7 @@
 
       <Pipe Width="30" Height="280" Mass="0" X="0" Y="0"></Pipe>
 
-      <WarpPipe Width="50" Height="100" Mass="0" X="120" Y="210" TeleportX="2220" TeleportY="190" WarpZoneName="Level1">></WarpPipe>
+      <Pipe Width="50" Height="100" Mass="0" X="120" Y="210">></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="220" Y="180"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="320" Y="220"></Pipe>
       <Pipe Width="50" Height="180" Mass="0" X="420" Y="170"></Pipe>
@@ -161,6 +161,8 @@
 
       <Pipe Width="50" Height="100" Mass="0" X="718" Y="210"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="820" Y="180"></Pipe>
+
+      <WarpPipe Width="50" Height="50" Mass="0" X="1945" Y="0" TeleportX="2020" TeleportY="-230" WarpZoneName="Level1">></WarpPipe>
       
       <Platform Width="720" Height="100" Mass="0" X="0" Y="280"></Platform>
 

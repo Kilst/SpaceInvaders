@@ -30,16 +30,21 @@ namespace SpaceInvaders.service
             if (Level.Ship.IsZoning == true)
             {
                 string level = Level.Ship.WarpZoneName;
+                Vector2 newPos = Level.Ship.WarpLocation;
                 if (previous != null)
                 {
                     if (level != previous.Name)
                     {
                         Level = new Level(level);
+                        //Level.Ship.Position = newPos;
                     }
                     else
                     {
                         Level = previous;
+                        //Level.Ship.Position = newPos;
                     }
+                    MoveScreen(new Vector2(-newPos.X, -newPos.Y));
+                    Level.Ship.GetBounds();
                 }
                 else
                     Level = new Level(level);
@@ -62,6 +67,7 @@ namespace SpaceInvaders.service
                 {
                     enemy.Move();
                     enemy.CollisionCheck(Level.Platforms);
+                    enemy.CollisionCheck(Level.WarpPipes);
                 }
                 // Check Bullet Bill object exists
                 if (enemy.GetType() == typeof(BulletBill))
