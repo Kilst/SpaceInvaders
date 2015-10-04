@@ -109,7 +109,7 @@ namespace SpaceInvaders.service
                 Level.Ship.Position.X = Level.Ship.PreviousPosition.X;
             }
             // Y Check
-            if ((Level.Ship.Position.Y < 20 || Level.Ship.Position.Y > 220) && Level.Platforms[0].OffsetY > -80)
+            if ((Level.Ship.Position.Y < 80 || Level.Ship.Position.Y > 220) && Level.Platforms[0].OffsetY > -80)
             {
                 MoveScreen(new Vector2(0, -Level.Ship.Velocity.Y));
                 Level.Ship.Position.Y = Level.Ship.PreviousPosition.Y;

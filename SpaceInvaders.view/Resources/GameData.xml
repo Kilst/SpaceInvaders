@@ -48,7 +48,7 @@
       <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="990" Y="30" MinPatrolX="900" MaxPatrolX="1200"></KoopaGreen>
       <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1500" Y="30" MinPatrolX="1150" MaxPatrolX="1600"></KoopaGreen>
 
-      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="130" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="2" MaxVelY="7" X="1100" Y="130" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
 
     </Enemies>
 
@@ -190,10 +190,10 @@
       <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="990" Y="30" MinPatrolX="900" MaxPatrolX="1200"></KoopaGreen>
       <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1500" Y="30" MinPatrolX="1150" MaxPatrolX="1600"></KoopaGreen>-->
 
-      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="230" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="4" MaxVelY="7" X="1100" Y="230" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
       <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="130" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
-      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="30" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
-      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="80" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="5" MaxVelY="7" X="1100" Y="30" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="2" MaxVelY="7" X="1100" Y="80" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
     </Enemies>
 
     <Coins>

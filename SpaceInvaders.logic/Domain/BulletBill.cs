@@ -60,7 +60,7 @@ namespace SpaceInvaders.logic.Domain
                 time = DateTime.Now;
             }
 
-                Velocity.X = -2;
+                Velocity.X = -MaxVelocity.X;
 
         }
     }
