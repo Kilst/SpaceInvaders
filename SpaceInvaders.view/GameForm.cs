@@ -388,14 +388,14 @@ namespace SpaceInvaders.view
             DateTime timer = DateTime.Now;
             while (game.Level.Ship.IsAlive)
             {
-                if (timer.AddMilliseconds(25) < DateTime.Now)
+                if (timer.AddMilliseconds(10) < DateTime.Now)
                 {
                     if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
                     {
                         if (game.Level.Ship.IsGrounded == true && game.Level.Ship.IsJumping == false)
                             game.Level.Ship.Velocity.Y -= 6.3;
                         else if (game.Level.Ship.Velocity.Y < -1)
-                            game.Level.Ship.Velocity.Y -= 0.11;
+                            game.Level.Ship.Velocity.Y -= 0.04;
                         game.Level.Ship.IsJumping = true;
                     }
                     else
@@ -403,11 +403,11 @@ namespace SpaceInvaders.view
                         game.Level.Ship.IsJumping = false;
                     }
                     if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)) && game.Level.Ship.IsGrounded)
-                        game.Level.Ship.Velocity.X += 0.5;
+                        game.Level.Ship.Velocity.X += 0.2;
                     else if (m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D))
                         game.Level.Ship.Velocity.X += 0.1;
                     if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)) && game.Level.Ship.IsGrounded)
-                        game.Level.Ship.Velocity.X -= 0.5;
+                        game.Level.Ship.Velocity.X -= 0.2;
                     if (m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A))
                         game.Level.Ship.Velocity.X -= 0.1;
                     if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
