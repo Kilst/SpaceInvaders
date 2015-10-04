@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders.view", "SpaceInvaders.view\SpaceInvaders.view.csproj", "{E377F22C-F69C-459F-A882-33C77554BFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders.logic", "SpaceInvaders.logic\SpaceInvaders.logic.csproj", "{D1FF3056-A9C1-4347-8083-0EFA9A1BB439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders.service", "SpaceInvaders.service\SpaceInvaders.service.csproj", "{8427D235-6824-4F5C-B9D0-389DE7F06B07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E377F22C-F69C-459F-A882-33C77554BFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E377F22C-F69C-459F-A882-33C77554BFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E377F22C-F69C-459F-A882-33C77554BFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E377F22C-F69C-459F-A882-33C77554BFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FF3056-A9C1-4347-8083-0EFA9A1BB439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FF3056-A9C1-4347-8083-0EFA9A1BB439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FF3056-A9C1-4347-8083-0EFA9A1BB439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FF3056-A9C1-4347-8083-0EFA9A1BB439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8427D235-6824-4F5C-B9D0-389DE7F06B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8427D235-6824-4F5C-B9D0-389DE7F06B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8427D235-6824-4F5C-B9D0-389DE7F06B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8427D235-6824-4F5C-B9D0-389DE7F06B07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

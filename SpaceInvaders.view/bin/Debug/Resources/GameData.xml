@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Levels>
+  <Level1>
+
+    <Platforms>
+      <Platform Width="30" Height="280" Mass="0" X="0" Y="0"></Platform>
+      <Platform Width="1720" Height="100" Mass="0" X="0" Y="280"></Platform>
+      <Platform Width="30" Height="30" Mass="0" X="70" Y="225"></Platform>
+      <Platform Width="30" Height="30" Mass="0" X="550" Y="100"></Platform>
+      <Platform Width="30" Height="30" Mass="0" X="498" Y="140"></Platform>
+      <Platform Width="30" Height="30" Mass="0" X="445" Y="180"></Platform>
+      <Platform Width="30" Height="30" Mass="0" X="390" Y="225"></Platform>
+
+      <Platform Width="300" Height="5" Mass="0" X="110" Y="140"></Platform>
+
+      <Platform Width="100" Height="30" Mass="0" X="960" Y="180"></Platform>
+      <Platform Width="100" Height="30" Mass="0" X="1120" Y="130"></Platform>
+      <Platform Width="100" Height="30" Mass="0" X="1280" Y="100"></Platform>
+      <Platform Width="100" Height="30" Mass="0" X="1440" Y="130"></Platform>
+
+      <Platform Width="50" Height="100" Mass="0" X="1770" Y="280"></Platform>
+      <Platform Width="50" Height="100" Mass="0" X="1870" Y="280"></Platform>
+      <Platform Width="50" Height="100" Mass="0" X="1970" Y="320"></Platform>
+      <Platform Width="50" Height="100" Mass="0" X="2070" Y="270"></Platform>
+      <Platform Width="150" Height="100" Mass="0" X="2170" Y="240"></Platform>
+
+      <Pipe Width="50" Height="50" Mass="0" X="2220" Y="190"></Pipe>
+      <WarpPipe Width="50" Height="50" Mass="0" X="210" Y="230" TeleportX="2220" TeleportY="190" WarpZoneName="Level2"></WarpPipe>
+      <Pipe Width="50" Height="50" Mass="0" X="780" Y="230"></Pipe>
+      <Pipe Width="50" Height="50" Mass="0" X="1650" Y="235"></Pipe>
+    </Platforms>
+
+    <Enemies>
+
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="400" Y="30" MinPatrolX="110" MaxPatrolX="390"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="500" Y="30" MinPatrolX="270" MaxPatrolX="600"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1180" Y="130" MinPatrolX="900" MaxPatrolX="1200"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1230" Y="130" MinPatrolX="1150" MaxPatrolX="1600"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1790" Y="30" MinPatrolX="1770" MaxPatrolX="1810"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1890" Y="30" MinPatrolX="1870" MaxPatrolX="1910"></Goomba>
+
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="200" Y="30" MinPatrolX="110" MaxPatrolX="390"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="300" Y="160" MinPatrolX="60" MaxPatrolX="190"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="990" Y="30" MinPatrolX="900" MaxPatrolX="1200"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1500" Y="30" MinPatrolX="1150" MaxPatrolX="1600"></KoopaGreen>
+
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="130" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+
+    </Enemies>
+
+    <Coins>
+
+      <Coin Width="30" Height="30" Mass="0" X="70" Y="190"></Coin>
+      <Coin Width="30" Height="30" Mass="0" X="540" Y="65"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="150" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="180" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="270" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="300" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="330" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="360" Y="250"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="460" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="490" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="520" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="550" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="250"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="170" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="200" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="230" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="260" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="290" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="320" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="350" Y="110"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="380" Y="110"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="840" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="870" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="900" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="930" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="960" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="990" Y="250"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="1040" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1070" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1100" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1130" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1160" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1190" Y="250"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="1240" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1270" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1300" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1330" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1360" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1390" Y="250"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="1440" Y="250"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1470" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1500" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1530" Y="190"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1560" Y="220"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="1590" Y="250"></Coin>
+
+      <Coin Width="50" Height="50" Mass="0" X="2220" Y="120"></Coin>
+
+    </Coins>
+
+  </Level1>
+
+
+  <Level2>
+
+    <Platforms>
+
+      <Pipe Width="100" Height="30" Mass="0" X="960" Y="200"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1120" Y="110"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="940" Y="20"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1120" Y="-50"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1320" Y="-0"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1520" Y="-50"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1720" Y="0"></Pipe>
+      <Pipe Width="100" Height="30" Mass="0" X="1920" Y="50"></Pipe>
+
+      <Pipe Width="30" Height="280" Mass="0" X="0" Y="0"></Pipe>
+
+      <WarpPipe Width="50" Height="100" Mass="0" X="120" Y="210" TeleportX="2220" TeleportY="190" WarpZoneName="Level1">></WarpPipe>
+      <Pipe Width="50" Height="100" Mass="0" X="220" Y="180"></Pipe>
+      <Pipe Width="50" Height="100" Mass="0" X="320" Y="220"></Pipe>
+      <Pipe Width="50" Height="180" Mass="0" X="420" Y="170"></Pipe>
+      <Pipe Width="150" Height="100" Mass="0" X="520" Y="140"></Pipe>
+
+      <Pipe Width="50" Height="100" Mass="0" X="718" Y="210"></Pipe>
+      <Pipe Width="50" Height="100" Mass="0" X="820" Y="180"></Pipe>
+      
+      <Platform Width="720" Height="100" Mass="0" X="0" Y="280"></Platform>
+
+    </Platforms>
+
+    <Enemies>
+
+      <!--<Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="400" Y="30" MinPatrolX="110" MaxPatrolX="390"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="500" Y="30" MinPatrolX="270" MaxPatrolX="600"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1180" Y="130" MinPatrolX="900" MaxPatrolX="1200"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1230" Y="130" MinPatrolX="1150" MaxPatrolX="1600"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1790" Y="30" MinPatrolX="1770" MaxPatrolX="1810"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1890" Y="30" MinPatrolX="1870" MaxPatrolX="1910"></Goomba>
+
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="200" Y="30" MinPatrolX="110" MaxPatrolX="390"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="300" Y="160" MinPatrolX="60" MaxPatrolX="190"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="990" Y="30" MinPatrolX="900" MaxPatrolX="1200"></KoopaGreen>
+      <KoopaGreen Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1500" Y="30" MinPatrolX="1150" MaxPatrolX="1600"></KoopaGreen>-->
+
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="230" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="130" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="30" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+      <BulletBill Width="70" Height="50" Mass="0" MaxVelX="3" MaxVelY="7" X="1100" Y="80" MinPatrolX="0" MaxPatrolX="1200"></BulletBill>
+    </Enemies>
+
+    <Coins>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="580" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="610" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="640" Y="215"></Coin>
+
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="65"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="95"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="125"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="155"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="185"></Coin>
+      <Coin Width="25" Height="25" Mass="0" X="670" Y="215"></Coin>
+    </Coins>
+
+  </Level2>
+</Levels>

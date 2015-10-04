@@ -1,0 +1,28 @@
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe.config
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.GameForm.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.Properties.Resources.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\coin.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\mariosprite.jpg
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\wall.bmp
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\marioCoin.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\goomba.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\koopagreen.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\skyBackground.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\mario.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\marioPipe.PNG
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\bulletBill.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\GameData.xml
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\mario.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe.config
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
