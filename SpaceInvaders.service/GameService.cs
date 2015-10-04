@@ -79,6 +79,8 @@ namespace SpaceInvaders.service
                 }
             }
 
+            ScreenCheck();
+
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
             Level.Ship.CollisionCheck(Level.WarpPipes);
@@ -94,8 +96,6 @@ namespace SpaceInvaders.service
 
                 time = DateTime.Now;
             }
-
-            ScreenCheck();
         }
 
         private void ScreenCheck()
@@ -123,22 +123,22 @@ namespace SpaceInvaders.service
             foreach (Platform platform in Level.Platforms)
             {
                 platform.MovePosition(direction);
-                platform.GetBounds();
+                //platform.GetBounds();
             }
             foreach (WarpPipe warpPipe in Level.WarpPipes)
             {
                 warpPipe.MovePosition(direction);
-                warpPipe.GetBounds();
+                //warpPipe.GetBounds();
             }
             foreach (Coin coin in Level.Coins)
             {
                 coin.MovePosition(direction);
-                coin.GetBounds();
+                //coin.GetBounds();
             }
             foreach (Enemy enemy in Level.Enemies)
             {
                 enemy.MovePosition(direction);
-                enemy.GetBounds();
+                //enemy.GetBounds();
             }
         }
 
