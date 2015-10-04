@@ -2,6 +2,10 @@
 <Levels>
   <Level1>
 
+    <Backgrounds>
+      <Background Name="skyBackground.png"></Background>
+    </Backgrounds>
+
     <Platforms>
       <Platform Width="30" Height="280" Mass="0" X="0" Y="0"></Platform>
       <Platform Width="1720" Height="100" Mass="0" X="0" Y="280"></Platform>
@@ -139,6 +143,10 @@
 
 
   <Level2>
+
+    <Backgrounds>
+      <Background Name="cloudsBG.png"></Background>
+    </Backgrounds>
 
     <Platforms>
 

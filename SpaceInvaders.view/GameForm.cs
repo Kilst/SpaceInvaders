@@ -388,7 +388,7 @@ namespace SpaceInvaders.view
             DateTime timer = DateTime.Now;
             while (game.Level.Ship.IsAlive)
             {
-                if (timer.AddMilliseconds(20) < DateTime.Now)
+                if (timer.AddMilliseconds(25) < DateTime.Now)
                 {
                     if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
                         if (game.Level.Ship.IsGrounded == true)

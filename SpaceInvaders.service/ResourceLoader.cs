@@ -15,10 +15,7 @@ namespace SpaceInvaders.service
         public static void LoadBitmaps(Level level)
         {
             // Load bitmaps
-            if (level.Name == "Level1")
-                level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\skyBackground.png");
-            if (level.Name == "Level2")
-                level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\cloudsBG.png");
+            GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
             level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");
@@ -72,6 +69,9 @@ namespace SpaceInvaders.service
                         break;
                     case "Coin":
                         level.Coins.Add(new Coin(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.coinImage)));
+                        break;
+                    case "Background":
+                        level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\" + element.Attribute(XName.Get("Name")).Value);
                         break;
                 }
             }
