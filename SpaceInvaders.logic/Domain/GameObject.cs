@@ -217,9 +217,9 @@ namespace SpaceInvaders.logic.Domain
                 {
 
                     if (PreviousPosition.X < platform.TopLeft.X)
-                        Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 2;
+                        Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
                     else if (PreviousPosition.X + Width > platform.TopRight.X)
-                        Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 2;
+                        Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
                     return;
@@ -333,13 +333,9 @@ namespace SpaceInvaders.logic.Domain
         {
             // Hack solution that works
             if (PreviousPosition.X < platform.TopLeft.X)
-            {
-                Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 2;
-            }
+                Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
             else if (PreviousPosition.X + Width > platform.TopRight.X)
-            {
-                Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 2;
-            }
+                Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             //PreviousPosition = Position;
             Velocity.X = Velocity.X * 0.5;
             GetBounds();
@@ -358,8 +354,8 @@ namespace SpaceInvaders.logic.Domain
                            Position.Y < platform.BottomRight.Y &&
                            BottomRight.Y > platform.TopLeft.Y)
                     {
-                        if (PreviousPosition.X + Width - 2 < platform.TopLeft.X
-                            || PreviousPosition.X + 2 > platform.TopRight.X)
+                        if (PreviousPosition.X + Width - 1 < platform.TopLeft.X
+                            || PreviousPosition.X + 1 > platform.TopRight.X)
                         {
                             // Hack solution
                             Y_XCheck(platform);

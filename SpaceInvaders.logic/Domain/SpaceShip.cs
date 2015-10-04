@@ -286,12 +286,19 @@ namespace SpaceInvaders.logic.Domain
                     }
                     else
                     {
-                        list.Remove(platform);
+                        if (platform.GetType() == typeof(DestroyableBrick))
+                        {
+                            DestroyableBrick brick = (DestroyableBrick)platform;
+                            if (!brick.Used)
+                            {
+                                brick.Used = true;
+                            }
+                        }
+                        //list.Remove(platform);
                         Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
                     }
                     //Position.Y = PreviousPosition.Y;
                     GetBounds();
-                    return;
                 }
             }
         }

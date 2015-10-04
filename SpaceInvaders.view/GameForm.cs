@@ -357,9 +357,9 @@ namespace SpaceInvaders.view
             else if (game != null)
             {
                 graphics.Clear(Color.Black);
-                btnStart.Show();
                 if (game.Level.Ship.IsAlive == false)
                 {
+                    btnStart.Show();
                     AnimateImage(game.Level.gameOver);
                     ImageAnimator.UpdateFrames();
                     //graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)coin.Position.X, (int)coin.Position.Y, coin.Width, coin.Height);

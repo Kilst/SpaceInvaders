@@ -131,6 +131,9 @@
     <Content Include="Resources\skyBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\usedBlock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\wall.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

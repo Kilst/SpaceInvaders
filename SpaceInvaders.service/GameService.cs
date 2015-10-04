@@ -56,6 +56,7 @@ namespace SpaceInvaders.service
 
         public void PhysicsUpdate()
         {
+            BrickCheck();
             Level.Ship.FallDeathCheck();
             int bulletBills = 0;
             // TODO: Fix collision bugs
@@ -99,6 +100,14 @@ namespace SpaceInvaders.service
                     Level.Enemies.Add(new BulletBill(70, 50, 0, new Vector2(3, 7), new Vector2(1100, 30), 0, 1200, Level.bulletBillImage));
 
                 time = DateTime.Now;
+            }
+        }
+
+        private void BrickCheck()
+        {
+            foreach (DestroyableBrick brick in Level.DestroyableBricks)
+            {
+                ResourceLoader.SwapDestroyableBrickImage(Level, brick);
             }
         }
 

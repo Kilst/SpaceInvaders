@@ -9,8 +9,8 @@
     <DestroyableBricks>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="445" Y="180"></DestroyableBrick>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="960" Y="180"></DestroyableBrick>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="1000" Y="180"></DestroyableBrick>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="1040" Y="180"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="990" Y="180"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="1020" Y="180"></DestroyableBrick>
     </DestroyableBricks>
 
     <Platforms>
@@ -157,7 +157,7 @@
 
     <DestroyableBricks>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="430" Y="80"></DestroyableBrick>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="920" Y="100"></DestroyableBrick>
+      <DestroyableBrick Width="30" Height="30" Mass="0" X="970" Y="100"></DestroyableBrick>
       <!--<DestroyableBrick Width="30" Height="30" Mass="0" X="1000" Y="130"></DestroyableBrick>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="1040" Y="130"></DestroyableBrick>-->
     </DestroyableBricks>

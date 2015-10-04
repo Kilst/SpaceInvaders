@@ -19,6 +19,7 @@ namespace SpaceInvaders.service
             GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
             level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.png");
+            level.usedBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\usedBlock.png");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
             level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");
             level.coinImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioCoin.gif");
@@ -27,6 +28,12 @@ namespace SpaceInvaders.service
             level.bulletBillImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\bulletBill.png");
             level.marioPipe.RotateFlip(RotateFlipType.Rotate90FlipNone);
             level.shipImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
+        }
+
+        public static void SwapDestroyableBrickImage(Level level, DestroyableBrick brick)
+        {
+            if (brick.Used)
+                brick.Bitmap = level.usedBlock;
         }
 
         public static void GetGameObjects(Level level, string levelName, string gameObject)
