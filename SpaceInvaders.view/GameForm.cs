@@ -391,10 +391,17 @@ namespace SpaceInvaders.view
                 if (timer.AddMilliseconds(25) < DateTime.Now)
                 {
                     if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
-                        if (game.Level.Ship.IsGrounded == true)
+                    {
+                        if (game.Level.Ship.IsGrounded == true && game.Level.Ship.IsJumping == false)
                             game.Level.Ship.Velocity.Y -= 6.3;
                         else if (game.Level.Ship.Velocity.Y < 0)
                             game.Level.Ship.Velocity.Y -= 0.11;
+                        game.Level.Ship.IsJumping = true;
+                    }
+                    else
+                    {
+                        game.Level.Ship.IsJumping = false;
+                    }
                     if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)) && game.Level.Ship.IsGrounded)
                         game.Level.Ship.Velocity.X += 0.5;
                     else if (m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D))

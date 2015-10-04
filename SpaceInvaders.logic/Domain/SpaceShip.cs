@@ -10,6 +10,7 @@ namespace SpaceInvaders.logic.Domain
 {
     public class SpaceShip : GameObject
     {
+        public bool IsJumping { get; set; }
         public bool IsAlive { get; set; }
         public bool IsDucking { get; set; }
         public bool IsZoning { get; set; }
@@ -25,6 +26,7 @@ namespace SpaceInvaders.logic.Domain
         {
             // We could set width, height, mass & position here (see below region)
             // but this is more elegant (less repeated code)
+            IsJumping = false;
             IsGrounded = false;
             IsAlive = true;
             IsDucking = false;
