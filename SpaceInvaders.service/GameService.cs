@@ -79,6 +79,7 @@ namespace SpaceInvaders.service
                 }
             }
 
+            // Screen moves when running into a wall :/
             ScreenCheck();
 
             // Polymorphism :)
@@ -86,7 +87,7 @@ namespace SpaceInvaders.service
             Level.Ship.CollisionCheck(Level.WarpPipes);
             Level.Ship.CollisionCheck(Level.Coins);
             Level.Ship.CollisionCheck(Level.Enemies);
-
+            
 
             if (time.AddSeconds(15) < DateTime.Now)
             {
@@ -105,16 +106,16 @@ namespace SpaceInvaders.service
             // X Check
             if (Level.Ship.Position.X > 500 || Level.Ship.Position.X < 120)
             {
-                MoveScreen(new Vector2(-Level.Ship.Velocity.X, 0));
+                MoveScreen(new Vector2(-(Level.Ship.Position.X-Level.Ship.PreviousPosition.X), 0));
                 Level.Ship.Position.X = Level.Ship.PreviousPosition.X;
             }
             // Y Check
             if ((Level.Ship.Position.Y < 80 || Level.Ship.Position.Y > 220) && Level.Platforms[0].OffsetY > -80)
             {
-                MoveScreen(new Vector2(0, -Level.Ship.Velocity.Y));
+                MoveScreen(new Vector2(0, -(Level.Ship.Position.Y - Level.Ship.PreviousPosition.Y)));
                 Level.Ship.Position.Y = Level.Ship.PreviousPosition.Y;
             }
-            Level.Ship.GetBounds();
+            //Level.Ship.GetBounds();
         }
 
         private void MoveScreen(Vector2 direction)
