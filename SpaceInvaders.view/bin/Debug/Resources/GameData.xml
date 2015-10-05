@@ -22,7 +22,7 @@
       <!--<Platform Width="30" Height="30" Mass="0" X="445" Y="180"></Platform>-->
       <Platform Width="30" Height="30" Mass="0" X="390" Y="225"></Platform>
 
-      <Platform Width="300" Height="5" Mass="0" X="110" Y="140"></Platform>
+      <JumpThroughPlatform Width="300" Height="5" Mass="0" X="110" Y="140"></JumpThroughPlatform>
 
       <!--<Platform Width="100" Height="30" Mass="0" X="960" Y="180"></Platform>-->
       <Platform Width="100" Height="30" Mass="0" X="1120" Y="130"></Platform>

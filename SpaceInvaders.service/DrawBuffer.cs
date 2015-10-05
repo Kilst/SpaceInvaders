@@ -34,12 +34,9 @@ namespace SpaceInvaders.service
         {
             int index = (int)i;
             Bitmap b = thisLevel.gifs[index];
-            // the image is set up for animation using the
+            
             // ImageAnimator class and an event handler
             ImageAnimator.Animate(b, new EventHandler(this.OnFrameChanged));
-            // we also need to parse the image name to
-            // determine the position of the gif in the array
-            thisLevel.gifs[index] = b;
         }
 
         public void AnimateImage(Bitmap animatedImage)
@@ -121,8 +118,6 @@ namespace SpaceInvaders.service
                         // Check to allow to render and calculate collisions
                         if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || game.Level.Enemies[i].GetType() == typeof(BulletBill))
                         {
-                            //AnimateImage(game.Level.gifs[2]);
-                            //ImageAnimator.UpdateFrames();
                             Enemy enemy = (Enemy)game.Level.Enemies[i];
                             if (enemy.GetType() == typeof(BulletBill))
                                 graphics.DrawImage(enemy.FlipNPCImage(game.Level.bulletBillImage), (int)game.Level.Enemies[i].Position.X,

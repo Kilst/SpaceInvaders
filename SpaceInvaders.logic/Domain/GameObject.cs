@@ -59,6 +59,7 @@ namespace SpaceInvaders.logic.Domain
         public GameObject()
         {
             this.Velocity = new Vector2(0, 0);
+            this.PreviousPosition = new Vector2(0, 0);
         }
 
         public GameObject(int width, int height, float mass, Vector2 position, Bitmap bitmap)
@@ -70,6 +71,7 @@ namespace SpaceInvaders.logic.Domain
             this.Mass = mass;
             this.MaxVelocity = new Vector2(3, 15);
             this.Velocity = new Vector2(0, 0);
+            this.PreviousPosition = new Vector2(0, 0);
             this.Position = position;
             GetBounds();
         }
@@ -115,6 +117,7 @@ namespace SpaceInvaders.logic.Domain
 
         public void MovePosition(Vector2 position)
         {
+            PreviousPosition = new Vector2(Position.X, Position.Y);
             OffsetX += position.X;
             OffsetY += position.Y;
             Position.X += position.X;
@@ -194,6 +197,11 @@ namespace SpaceInvaders.logic.Domain
         {
             if (list.Count > 0)
             {
+                if (list[0].GetType() == typeof(JumpThroughPlatform))
+                {
+                    CollisionCheckY(list);
+                    return;
+                }
                 if (list[0].GetType() == typeof(Platform)
                     || list[0].GetType() == typeof(Pipe))
                 {
@@ -210,19 +218,22 @@ namespace SpaceInvaders.logic.Domain
         {
             foreach (Platform platform in list)
             {
-                if (TopLeft.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       TopLeft.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
+                if (platform.GetType() != typeof(JumpThroughPlatform))
                 {
+                    if (TopLeft.X < platform.TopRight.X &&
+                           TopRight.X > platform.TopLeft.X &&
+                           TopLeft.Y < platform.BottomRight.Y &&
+                           BottomRight.Y > platform.TopLeft.Y)
+                    {
 
-                    if (PreviousPosition.X < platform.TopLeft.X)
-                        Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (PreviousPosition.X + Width > platform.TopRight.X)
-                        Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-                    Velocity.X = Velocity.X * 0;
-                    GetBounds();
-                    return;
+                        if (PreviousPosition.X < platform.TopLeft.X)
+                            Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
+                        else if (PreviousPosition.X + Width > platform.TopRight.X)
+                            Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
+                        Velocity.X = Velocity.X * 0;
+                        GetBounds();
+                        return;
+                    }
                 }
             }
         }
@@ -349,17 +360,20 @@ namespace SpaceInvaders.logic.Domain
                 if (platform.CheckCollisions != false)
                 {
 
-                    if (Position.X < platform.TopRight.X &&
-                           TopRight.X > platform.TopLeft.X &&
-                           Position.Y < platform.BottomRight.Y &&
-                           BottomRight.Y > platform.TopLeft.Y)
+                    if (TopLeft.X < platform.TopRight.X &&
+                       TopRight.X > platform.TopLeft.X &&
+                       TopLeft.Y < platform.BottomRight.Y &&
+                       BottomRight.Y > platform.TopLeft.Y)
                     {
                         if (PreviousPosition.X + Width - 1 < platform.TopLeft.X
                             || PreviousPosition.X + 1 > platform.TopRight.X)
                         {
                             // Hack solution
-                            Y_XCheck(platform);
-                            return;
+                            if (platform.GetType() != typeof(JumpThroughPlatform))
+                            {
+                                Y_XCheck(platform);
+                                return;
+                            }
                         }
 
 
@@ -374,17 +388,20 @@ namespace SpaceInvaders.logic.Domain
                             IsGrounded = false;
                             //Position.Y = PreviousPosition.Y + (platform.Position.Y + platform.Height - PreviousPosition.Y);
                         }
+                        if(platform.GetType() != typeof(JumpThroughPlatform))
+                            Velocity.Y = 0;
 
-                        Velocity.Y = 0;
-
-                        if (PreviousPosition.Y <= platform.TopLeft.Y)
+                        if (PreviousPosition.Y + Height <= platform.TopLeft.Y)
                         {
+                            if (platform.GetType() == typeof(JumpThroughPlatform))
+                                Velocity.Y = 0;
                             //IsGrounded = true;
                             Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                         }
                         else
                         {
-                            Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
+                            if(platform.GetType() != typeof(JumpThroughPlatform))
+                                Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
                             //IsGrounded = false;
                         }
                         //Position.Y = PreviousPosition.Y;

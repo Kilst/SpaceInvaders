@@ -107,7 +107,6 @@ namespace SpaceInvaders.view
                     // Needed to let the game end
                 }
                 game.Level.Dispose();
-                game.End();
                 game = null;
                 //game.Level.Ship.Direction = left;
                 thread = null;
@@ -136,15 +135,15 @@ namespace SpaceInvaders.view
                         drawBuffer = null;
                         drawBuffer = new DrawBuffer(game.Level);
                     }
+
+                    // Calls GameForm_Paint
+                    Invalidate();
                 }
 
-                // Calls GameForm_Paint
-                Invalidate();
-
-                //Thread.Sleep(10);
+                
             }
             DateTime timer = DateTime.Now;
-            while (game != null)
+            while (game != null && drawBuffer != null)
             {
                 if (timer.AddMilliseconds(25) < DateTime.Now)
                 {
@@ -156,12 +155,15 @@ namespace SpaceInvaders.view
 
         private void GameForm_Paint(object sender, PaintEventArgs e)
         {
-            if (game != null && drawBuffer.painting == false)
+            if (game != null && drawBuffer != null)
             {
-                if (game.Level.Ship.IsAlive == false && !btnStart.Visible)
-                    btnStart.Show();
-                e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
-                // Rendering graphics from here stops flickering (used in conjunction with double buffering)
+                if (drawBuffer.painting == false)
+                {
+                    if (game.Level.Ship.IsAlive == false && !btnStart.Visible)
+                        btnStart.Show();
+                    e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
+                    // Rendering graphics from here stops flickering (used in conjunction with double buffering)
+                }
             }
         }
 

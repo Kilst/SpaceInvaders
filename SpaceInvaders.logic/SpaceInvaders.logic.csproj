@@ -47,6 +47,7 @@
     <Compile Include="Domain\GameObject.cs" />
     <Compile Include="Domain\iCollisions.cs" />
     <Compile Include="Domain\iPhysics.cs" />
+    <Compile Include="Domain\JumpThroughPlatform.cs" />
     <Compile Include="Domain\KoopaGreen.cs" />
     <Compile Include="Domain\Goomba.cs" />
     <Compile Include="Domain\Pipe.cs" />

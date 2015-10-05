@@ -61,6 +61,9 @@ namespace SpaceInvaders.service
                     case "Platform":
                         level.Platforms.Add(new Platform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
                         break;
+                    case "JumpThroughPlatform":
+                        level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
+                        break;
                     case "Pipe":
                         level.Platforms.Add(new Pipe(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.marioPipe)));
                         break;

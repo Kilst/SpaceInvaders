@@ -73,16 +73,6 @@ namespace SpaceInvaders.service
 
         public void Dispose()
         {
-            gameOver = null;
-            backgroundImage = null;
-            platformImage = null;
-            marioPipe = null;
-            shipImage = null;
-            coinImage = null;
-            npcImage = null;
-            koopaImage = null;
-            bulletBillImage = null;
-
             foreach (GameObject item in Platforms)
             {
                 item.Dispose();
