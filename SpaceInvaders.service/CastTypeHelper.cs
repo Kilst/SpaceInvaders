@@ -11,10 +11,10 @@ namespace SpaceInvaders.service
 {
     public class CastTypeHelper
     {
-        public static Bitmap EnemyNPCFlip(GameObject obj)
+        public static Bitmap EnemyNPCFlip(GameObject obj, Bitmap b)
         {
             Enemy enemy = (Enemy)obj;
-            return enemy.FlipNPCImage();
+            return enemy.FlipNPCImage(b);
         }
 
         public static string CheckType(GameObject obj)

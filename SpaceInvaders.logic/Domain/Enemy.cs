@@ -138,18 +138,18 @@ namespace SpaceInvaders.logic.Domain
             GetBounds();
         }
 
-        public Bitmap FlipNPCImage()
+        public Bitmap FlipNPCImage(Bitmap bitmap)
         {
+            Bitmap newBitmap = newBitmap = new Bitmap(bitmap);
             if (Velocity.X > 0)
             {
-                Bitmap newBitmap = new Bitmap(Bitmap);
                 Flipped = true;
                 newBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
                 return newBitmap;
             }
             else if (Velocity.X < 0)
                 Flipped = false;
-            return Bitmap;
+            return newBitmap;
         }
     }
 }

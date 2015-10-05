@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //..
+using System.Threading;
 using System.Drawing;
 using SpaceInvaders.logic.Domain;
 
@@ -15,11 +16,29 @@ namespace SpaceInvaders.service
         Graphics graphics;
         bool currentlyAnimating;
         bool checkedGameEnded = false;
+        Level thisLevel;
 
-        public DrawBuffer()
+        public DrawBuffer(Level level)
         {
+            thisLevel = level;
             buffer = new Bitmap(800, 400);
             currentlyAnimating = false;
+            for (int i = 0; i < thisLevel.gifs.Count(); i++)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(this.RunAnimation), (int)i);
+            }
+        }
+
+        void RunAnimation(object i)
+        {
+            int index = (int)i;
+            Bitmap b = thisLevel.gifs[index];
+            // the image is set up for animation using the
+            // ImageAnimator class and an event handler
+            ImageAnimator.Animate(b, new EventHandler(this.OnFrameChanged));
+            // we also need to parse the image name to
+            // determine the position of the gif in the array
+            thisLevel.gifs[index] = b;
         }
 
         public void AnimateImage(Bitmap animatedImage)
@@ -41,7 +60,7 @@ namespace SpaceInvaders.service
         public Bitmap Draw(GameService game)
         {
             graphics = Graphics.FromImage(buffer);
-
+            ImageAnimator.UpdateFrames();
             // Render graphics
             if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
@@ -65,8 +84,13 @@ namespace SpaceInvaders.service
                     // Check to allow to render and calculate collisions
                     if (game.Level.Ship.CheckDistance(game.Level.DestroyableBricks[i]))
                     {
-                        graphics.DrawImage(game.Level.DestroyableBricks[i].Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
-                                            (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                        DestroyableBrick brick = (DestroyableBrick)game.Level.DestroyableBricks[i];
+                        if (!brick.Used)
+                            graphics.DrawImage(game.Level.gifs[3], (int)game.Level.DestroyableBricks[i].Position.X,
+                                                (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                        else
+                            graphics.DrawImage(brick.Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
+                                                (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
                     }
                 }
 
@@ -74,9 +98,9 @@ namespace SpaceInvaders.service
                 {
                     if (game.Level.Ship.CheckDistance(game.Level.Coins[i]))
                     {
-                        AnimateImage(game.Level.coinImage);
-                        ImageAnimator.UpdateFrames();
-                        graphics.DrawImage(game.Level.coinImage, (int)game.Level.Coins[i].Position.X,
+                        //AnimateImage(game.Level.gifs[2]);
+                        //ImageAnimator.UpdateFrames();
+                        graphics.DrawImage(game.Level.gifs[2], (int)game.Level.Coins[i].Position.X,
                             (int)game.Level.Coins[i].Position.Y, game.Level.Coins[i].Width, game.Level.Coins[i].Height);
                     }
                 }
@@ -84,12 +108,31 @@ namespace SpaceInvaders.service
                 for (int i = 0; i < game.Level.Enemies.Count; i++)
                 {
                     // Check to allow to render and calculate collisions
-                    if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || CastTypeHelper.CheckType(game.Level.Enemies[i]) == "BulletBill")
+                    if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || game.Level.Enemies[i].GetType() == typeof(BulletBill))
                     {
-                        graphics.DrawImage(CastTypeHelper.EnemyNPCFlip(game.Level.Enemies[i]), (int)game.Level.Enemies[i].Position.X,
-                                            (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                        //AnimateImage(game.Level.gifs[2]);
+                        //ImageAnimator.UpdateFrames();
+                        Enemy enemy = (Enemy)game.Level.Enemies[i];
+                        if (enemy.GetType() == typeof(BulletBill))
+                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.bulletBillImage), (int)game.Level.Enemies[i].Position.X,
+                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                        if (enemy.GetType() == typeof(Goomba))
+                        {
+                            //AnimateImage(game.Level.gifs[0]);
+                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[0]), (int)game.Level.Enemies[i].Position.X,
+                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                        }
+                        if (enemy.GetType() == typeof(KoopaGreen))
+                        {
+                            //AnimateImage(game.Level.gifs[1]);
+                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[1]), (int)game.Level.Enemies[i].Position.X,
+                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                        }
                     }
                 }
+
+                //AnimateImage(game.Level.Ship.Bitmap);
+                //ImageAnimator.UpdateFrames();
                 // Draw Mario
                 graphics.DrawImage(game.Level.Ship.Bitmap, (int)game.Level.Ship.Position.X,
                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);

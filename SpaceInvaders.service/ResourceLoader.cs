@@ -18,7 +18,7 @@ namespace SpaceInvaders.service
             level.gameOver = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\gameOver.gif");
             GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
-            level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.png");
+            level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.gif");
             level.usedBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\usedBlock.png");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
             level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");

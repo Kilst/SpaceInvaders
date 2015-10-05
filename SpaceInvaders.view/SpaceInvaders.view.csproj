@@ -125,6 +125,9 @@
     <Content Include="Resources\mariosprite.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\questionBlock.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\questionBlock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

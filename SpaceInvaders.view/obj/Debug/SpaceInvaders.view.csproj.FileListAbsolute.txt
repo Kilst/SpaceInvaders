@@ -27,3 +27,4 @@ C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\Space
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csproj.GenerateResource.Cache
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.exe
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\questionBlock.gif

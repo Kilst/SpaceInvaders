@@ -11,6 +11,7 @@ namespace SpaceInvaders.service
 {
     public class Level : IDisposable
     {
+        public Bitmap[] gifs;
         public Bitmap gameOver;
         public Bitmap backgroundImage;
         public Bitmap platformImage;
@@ -42,6 +43,7 @@ namespace SpaceInvaders.service
             DestroyableBricks = new List<GameObject>();
             WarpPipes = new List<GameObject>();
             Coins = new List<GameObject>();
+            gifs = new Bitmap[4];
 
             // GetEnemies
             ResourceLoader.GetGameObjects(this, level, "Enemies");
@@ -53,6 +55,10 @@ namespace SpaceInvaders.service
             // GetCoins
             ResourceLoader.GetGameObjects(this, level, "Coins");
             CountBulletBills();
+            gifs[0] = npcImage;
+            gifs[1] = koopaImage;
+            gifs[2] = coinImage;
+            gifs[3] = questionBlock;
         }
 
         private void CountBulletBills()

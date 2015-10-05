@@ -89,9 +89,10 @@ namespace SpaceInvaders.view
             if (thread == null)
             {
                 btnStart.Hide();
-                drawBuffer = new DrawBuffer();
+                
                 time = new DateTime();
                 game = new GameService();
+                drawBuffer = new DrawBuffer(game.Level);
                 thread = new Thread(new ThreadStart(GameLoop));
                 thread.Start();
                 keysThread = new Thread(new ThreadStart(KeyLoop));
