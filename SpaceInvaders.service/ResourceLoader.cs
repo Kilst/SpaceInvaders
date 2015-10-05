@@ -31,7 +31,7 @@ namespace SpaceInvaders.service
             level.shipImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
         }
 
-        public static void SwapDestroyableBrickImage(Level level, DestroyableBrick brick)
+        public static void SwapQuestionBlockImage(Level level, QuestionBlock brick)
         {
             if (brick.Used)
                 brick.Bitmap = level.usedBlock;
@@ -72,7 +72,10 @@ namespace SpaceInvaders.service
                         level.WarpPipes.Add(new WarpPipe(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.marioPipe), new Vector2(int.Parse(element.Attribute(XName.Get("TeleportX")).Value), int.Parse(element.Attribute(XName.Get("TeleportY")).Value)), element.Attribute(XName.Get("WarpZoneName")).Value));
                         break;
                     case "DestroyableBrick":
-                        level.DestroyableBricks.Add(new DestroyableBrick(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.questionBlock)));
+                        level.DestroyableBricks.Add(new DestroyableBrick(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
+                        break;
+                    case "QuestionBlock":
+                        level.DestroyableBricks.Add(new QuestionBlock(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.questionBlock)));
                         break;
                     case "Goomba":
                         level.Enemies.Add(new Goomba(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("MaxVelX")).Value), int.Parse(element.Attribute(XName.Get("MaxVelY")).Value)), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), int.Parse(element.Attribute(XName.Get("MinPatrolX")).Value), int.Parse(element.Attribute(XName.Get("MaxPatrolX")).Value), new Bitmap(level.npcImage)));

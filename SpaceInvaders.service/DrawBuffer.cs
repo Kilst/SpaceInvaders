@@ -63,6 +63,7 @@ namespace SpaceInvaders.service
             // Render graphics
             if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
+                // Rendering order is important
                 game.Level.Ship.FlipShipImage();
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
 
@@ -93,13 +94,19 @@ namespace SpaceInvaders.service
                     // Check to allow to render and calculate collisions
                     if (game.Level.Ship.CheckDistance(game.Level.DestroyableBricks[i]))
                     {
-                        DestroyableBrick brick = (DestroyableBrick)game.Level.DestroyableBricks[i];
-                        if (!brick.Used)
-                            graphics.DrawImage(game.Level.gifs[3], (int)game.Level.DestroyableBricks[i].Position.X,
-                                                (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                        if (game.Level.DestroyableBricks[i].GetType() == typeof(QuestionBlock))
+                        {
+                            QuestionBlock brick = (QuestionBlock)game.Level.DestroyableBricks[i];
+                            if (!brick.Used)
+                                graphics.DrawImage(game.Level.gifs[3], (int)game.Level.DestroyableBricks[i].Position.X,
+                                                    (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                            else
+                                graphics.DrawImage(brick.Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
+                                                    (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                        }
                         else
-                            graphics.DrawImage(brick.Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
-                                                (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
+                            graphics.DrawImage(game.Level.DestroyableBricks[i].Bitmap, (int)game.Level.DestroyableBricks[i].Position.X,
+                                                    (int)game.Level.DestroyableBricks[i].Position.Y, game.Level.DestroyableBricks[i].Width, game.Level.DestroyableBricks[i].Height);
                     }
                 }
 

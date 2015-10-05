@@ -52,7 +52,7 @@ namespace SpaceInvaders.service
             ResourceLoader.GetGameObjects(this, level, "Platforms");
             ResourceLoader.GetGameObjects(this, level, "DestroyableBricks");
             // GetWarpPipes
-            ResourceLoader.GetGameObjects(this, level, "WarpPipe");
+            ResourceLoader.GetGameObjects(this, level, "WarpPipes");
             // GetCoins
             ResourceLoader.GetGameObjects(this, level, "Coins");
             CountBulletBills();

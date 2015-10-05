@@ -193,7 +193,8 @@ namespace SpaceInvaders.logic.Domain
                     //EnemyCollisionCheckX(list);
                     return;
                 }
-                else if (list[0].GetType().Equals(typeof(DestroyableBrick)))
+                else if (list[0].GetType().Equals(typeof(QuestionBlock))
+                        || list[0].GetType().Equals(typeof(DestroyableBrick)))
                 {
                     EnemyCollisionCheckY(list);
                     EnemyCollisionCheckX(list);
@@ -220,7 +221,8 @@ namespace SpaceInvaders.logic.Domain
                         Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                     Velocity.X = Velocity.X * 0;
                     GetBounds();
-                    if (platform.GetType() != typeof(DestroyableBrick))
+                    if (platform.GetType() != typeof(QuestionBlock)
+                        && platform.GetType() != typeof(DestroyableBrick))
                         IsAlive = false;
                 }
             }
@@ -239,7 +241,8 @@ namespace SpaceInvaders.logic.Domain
                 else if (PreviousPosition.X + Width > platform.TopRight.X)
                     Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
                 Velocity.X = Velocity.X * 0.5;
-                if (platform.GetType() != typeof(DestroyableBrick))
+                if (platform.GetType() != typeof(QuestionBlock)
+                    && platform.GetType() != typeof(DestroyableBrick))
                     IsAlive = false;
                 GetBounds();
             }
@@ -265,7 +268,8 @@ namespace SpaceInvaders.logic.Domain
                     if ((BottomLeft.Y) > platform.TopLeft.Y
                         && (BottomLeft.Y) < platform.TopLeft.Y + (platform.Height / 2))
                     {
-                        if (platform.GetType() != typeof(DestroyableBrick))
+                        if (platform.GetType() != typeof(QuestionBlock)
+                            && platform.GetType() != typeof(DestroyableBrick))
                         {
                             // Disable enemy
                             list.Remove(platform);
@@ -280,7 +284,8 @@ namespace SpaceInvaders.logic.Domain
                     else
                         IsGrounded = false;
                     Velocity.Y = 0;
-                    if(platform.GetType() != typeof(DestroyableBrick))
+                    if (platform.GetType() != typeof(QuestionBlock)
+                        && platform.GetType() != typeof(DestroyableBrick))
                         IsAlive = false;
 
                     if (PreviousPosition.Y + Height - 1 <= platform.TopLeft.Y)
@@ -289,16 +294,20 @@ namespace SpaceInvaders.logic.Domain
                     }
                     else
                     {
-                        if (platform.GetType() == typeof(DestroyableBrick))
+                        if (platform.GetType() == typeof(QuestionBlock))
                         {
-                            DestroyableBrick brick = (DestroyableBrick)platform;
+                            QuestionBlock brick = (QuestionBlock)platform;
                             if (!brick.Used)
                             {
                                 brick.Used = true;
                             }
                         }
-                        //list.Remove(platform);
-                        Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
+                        else if (platform.GetType() == typeof(DestroyableBrick))
+                        {
+                            list.Remove(platform);
+                        }
+                        Position.Y = PreviousPosition.Y + 2 + (platform.BottomRight.Y - PreviousPosition.Y);
+                        return;
                     }
                     //Position.Y = PreviousPosition.Y;
                     GetBounds();

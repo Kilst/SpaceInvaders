@@ -52,6 +52,7 @@
     <Compile Include="Domain\Goomba.cs" />
     <Compile Include="Domain\Pipe.cs" />
     <Compile Include="Domain\Platform.cs" />
+    <Compile Include="Domain\QuestionBlock.cs" />
     <Compile Include="Domain\SpaceShip.cs" />
     <Compile Include="Domain\Vector2.cs" />
     <Compile Include="Domain\WarpPipe.cs" />

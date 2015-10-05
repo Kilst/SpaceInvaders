@@ -88,6 +88,7 @@ namespace SpaceInvaders.service
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
+            //Level.Ship.CollisionCheck(Level.JumpThroughPlatforms);
             Level.Ship.CollisionCheck(Level.DestroyableBricks);
             Level.Ship.CollisionCheck(Level.WarpPipes);
             Level.Ship.CollisionCheck(Level.Coins);
@@ -109,7 +110,11 @@ namespace SpaceInvaders.service
         {
             foreach (DestroyableBrick brick in Level.DestroyableBricks)
             {
-                ResourceLoader.SwapDestroyableBrickImage(Level, brick);
+                if (brick.GetType() == typeof(QuestionBlock))
+                {
+                    QuestionBlock block = (QuestionBlock)brick;
+                    ResourceLoader.SwapQuestionBlockImage(Level, block);
+                }
             }
         }
 
