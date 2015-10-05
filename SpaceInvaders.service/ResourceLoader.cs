@@ -18,6 +18,7 @@ namespace SpaceInvaders.service
             level.gameOver = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\gameOver.gif");
             GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
+            level.groundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\ground.png");
             level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.gif");
             level.usedBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\usedBlock.png");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
@@ -62,7 +63,7 @@ namespace SpaceInvaders.service
                         level.Platforms.Add(new Platform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
                         break;
                     case "JumpThroughPlatform":
-                        level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
+                        level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("ImageHeight")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.groundImage)));
                         break;
                     case "Pipe":
                         level.Platforms.Add(new Pipe(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.marioPipe)));

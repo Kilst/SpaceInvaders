@@ -66,16 +66,26 @@ namespace SpaceInvaders.service
                 game.Level.Ship.FlipShipImage();
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
 
+                for (int i = 0; i < game.Level.Platforms.Count; i++)
+                {
+                    if (game.Level.Platforms[i].GetType() == typeof(JumpThroughPlatform))
+                    {
+                        if (game.Level.Ship.CheckDistance(game.Level.Platforms[i]))
+                        {
+                            JumpThroughPlatform jPlatform = (JumpThroughPlatform)game.Level.Platforms[i];
+                            graphics.DrawImage(jPlatform.Bitmap, (int)jPlatform.Position.X,
+                        (int)jPlatform.Position.Y, jPlatform.Width, jPlatform.ImageHeight);
+                        }
+                    }
+                    else
+                        graphics.DrawImage(game.Level.Platforms[i].Bitmap, (int)game.Level.Platforms[i].Position.X,
+                        (int)game.Level.Platforms[i].Position.Y, game.Level.Platforms[i].Width, game.Level.Platforms[i].Height);
+                }
+
                 for (int i = 0; i < game.Level.WarpPipes.Count; i++)
                 {
                     graphics.DrawImage(game.Level.WarpPipes[i].Bitmap, (int)game.Level.WarpPipes[i].Position.X,
                     (int)game.Level.WarpPipes[i].Position.Y, game.Level.WarpPipes[i].Width, game.Level.WarpPipes[i].Height);
-                }
-
-                for (int i = 0; i < game.Level.Platforms.Count; i++)
-                {
-                    graphics.DrawImage(game.Level.Platforms[i].Bitmap, (int)game.Level.Platforms[i].Position.X,
-                    (int)game.Level.Platforms[i].Position.Y, game.Level.Platforms[i].Width, game.Level.Platforms[i].Height);
                 }
 
                 for (int i = 0; i < game.Level.DestroyableBricks.Count; i++)

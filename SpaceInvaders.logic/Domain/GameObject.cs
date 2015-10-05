@@ -128,8 +128,9 @@ namespace SpaceInvaders.logic.Domain
         public bool CheckDistance(GameObject obj)
         {
             // Check X distances
-            double myPosition = this.Position.X;
-            double objPosition = obj.Position.X;
+            double myPosition = this.TopLeft.X;
+            double objPositionLeft = obj.TopLeft.X;
+            double objPositionRight = obj.TopRight.X;
 
             // Normalise the distances
             //if (myPosition < 0)
@@ -138,7 +139,7 @@ namespace SpaceInvaders.logic.Domain
             //    objPosition = objPosition * -1;
 
             // Compare (check the object is on the screen)
-            if (objPosition - myPosition < 800 && objPosition - myPosition > -500)
+            if (objPositionLeft - myPosition < 800 && objPositionRight - myPosition > -500)
             {
                 // Allow to render and calculate collisions
                 obj.CheckCollisions = true;
@@ -197,13 +198,9 @@ namespace SpaceInvaders.logic.Domain
         {
             if (list.Count > 0)
             {
-                if (list[0].GetType() == typeof(JumpThroughPlatform))
-                {
-                    CollisionCheckY(list);
-                    return;
-                }
                 if (list[0].GetType() == typeof(Platform)
-                    || list[0].GetType() == typeof(Pipe))
+                    || list[0].GetType() == typeof(Pipe)
+                    || list[0].GetType() == typeof(JumpThroughPlatform))
                 {
                     CollisionCheckY(list);
                     CollisionCheckX(list);

@@ -95,7 +95,8 @@ namespace SpaceInvaders.logic.Domain
             {
                 if (list[0].GetType() == typeof(Platform)
                     || list[0].GetType() == typeof(Pipe)
-                    || list[0].GetType() == typeof(DestroyableBrick))
+                    || list[0].GetType() == typeof(DestroyableBrick)
+                    || list[0].GetType() == typeof(JumpThroughPlatform))
                 {
                     CollisionCheckY(list);
                     //CollisionCheckX(list);

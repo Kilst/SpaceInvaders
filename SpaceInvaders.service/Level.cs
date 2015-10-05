@@ -15,6 +15,7 @@ namespace SpaceInvaders.service
         public Bitmap gameOver;
         public Bitmap backgroundImage;
         public Bitmap platformImage;
+        public Bitmap groundImage;
         public Bitmap questionBlock;
         public Bitmap usedBlock;
         public Bitmap marioPipe;

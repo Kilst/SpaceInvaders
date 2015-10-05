@@ -107,6 +107,9 @@
     <Content Include="Resources\goomba.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\ground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\koopagreen.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
