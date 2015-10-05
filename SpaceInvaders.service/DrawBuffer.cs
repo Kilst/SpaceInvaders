@@ -17,11 +17,12 @@ namespace SpaceInvaders.service
         bool currentlyAnimating;
         bool checkedGameEnded = false;
         Level thisLevel;
+        public bool painting = false;
 
         public DrawBuffer(Level level)
         {
             thisLevel = level;
-            buffer = new Bitmap(800, 400);
+            buffer = new Bitmap(734, 400);
             currentlyAnimating = false;
             for (int i = 0; i < thisLevel.gifs.Count(); i++)
             {
@@ -59,6 +60,7 @@ namespace SpaceInvaders.service
 
         public Bitmap Draw(GameService game)
         {
+            painting = true;
             graphics = Graphics.FromImage(buffer);
             ImageAnimator.UpdateFrames();
             // Render graphics
@@ -96,38 +98,52 @@ namespace SpaceInvaders.service
 
                 for (int i = 0; i < game.Level.Coins.Count; i++)
                 {
-                    if (game.Level.Ship.CheckDistance(game.Level.Coins[i]))
+                    try
                     {
-                        //AnimateImage(game.Level.gifs[2]);
-                        //ImageAnimator.UpdateFrames();
-                        graphics.DrawImage(game.Level.gifs[2], (int)game.Level.Coins[i].Position.X,
-                            (int)game.Level.Coins[i].Position.Y, game.Level.Coins[i].Width, game.Level.Coins[i].Height);
+                        if (game.Level.Ship.CheckDistance(game.Level.Coins[i]))
+                        {
+                            //AnimateImage(game.Level.gifs[2]);
+                            //ImageAnimator.UpdateFrames();
+                            graphics.DrawImage(game.Level.gifs[2], (int)game.Level.Coins[i].Position.X,
+                                (int)game.Level.Coins[i].Position.Y, game.Level.Coins[i].Width, game.Level.Coins[i].Height);
+                        }
+                    }
+                    catch
+                    {
+
                     }
                 }
 
                 for (int i = 0; i < game.Level.Enemies.Count; i++)
                 {
-                    // Check to allow to render and calculate collisions
-                    if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || game.Level.Enemies[i].GetType() == typeof(BulletBill))
+                    try
                     {
-                        //AnimateImage(game.Level.gifs[2]);
-                        //ImageAnimator.UpdateFrames();
-                        Enemy enemy = (Enemy)game.Level.Enemies[i];
-                        if (enemy.GetType() == typeof(BulletBill))
-                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.bulletBillImage), (int)game.Level.Enemies[i].Position.X,
-                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
-                        if (enemy.GetType() == typeof(Goomba))
+                        // Check to allow to render and calculate collisions
+                        if (game.Level.Ship.CheckDistance(game.Level.Enemies[i]) || game.Level.Enemies[i].GetType() == typeof(BulletBill))
                         {
-                            //AnimateImage(game.Level.gifs[0]);
-                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[0]), (int)game.Level.Enemies[i].Position.X,
-                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                            //AnimateImage(game.Level.gifs[2]);
+                            //ImageAnimator.UpdateFrames();
+                            Enemy enemy = (Enemy)game.Level.Enemies[i];
+                            if (enemy.GetType() == typeof(BulletBill))
+                                graphics.DrawImage(enemy.FlipNPCImage(game.Level.bulletBillImage), (int)game.Level.Enemies[i].Position.X,
+                                            (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                            if (enemy.GetType() == typeof(Goomba))
+                            {
+                                //AnimateImage(game.Level.gifs[0]);
+                                graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[0]), (int)game.Level.Enemies[i].Position.X,
+                                            (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                            }
+                            if (enemy.GetType() == typeof(KoopaGreen))
+                            {
+                                //AnimateImage(game.Level.gifs[1]);
+                                graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[1]), (int)game.Level.Enemies[i].Position.X,
+                                            (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
+                            }
                         }
-                        if (enemy.GetType() == typeof(KoopaGreen))
-                        {
-                            //AnimateImage(game.Level.gifs[1]);
-                            graphics.DrawImage(enemy.FlipNPCImage(game.Level.gifs[1]), (int)game.Level.Enemies[i].Position.X,
-                                        (int)game.Level.Enemies[i].Position.Y, game.Level.Enemies[i].Width, game.Level.Enemies[i].Height);
-                        }
+                    }
+                    catch
+                    {
+
                     }
                 }
 
@@ -161,7 +177,7 @@ namespace SpaceInvaders.service
             {
                 currentlyAnimating = false;
             }
-            //painting = false;
+            painting = false;
             graphics.Dispose();
             return buffer;
         }

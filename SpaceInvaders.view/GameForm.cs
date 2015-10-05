@@ -133,6 +133,8 @@ namespace SpaceInvaders.view
                     {
                         Thread.Sleep(1000);
                         newLevel = game.UpdateLevel();
+                        drawBuffer = null;
+                        drawBuffer = new DrawBuffer(game.Level);
                     }
                 }
 
@@ -154,7 +156,7 @@ namespace SpaceInvaders.view
 
         private void GameForm_Paint(object sender, PaintEventArgs e)
         {
-            if (game != null)
+            if (game != null && drawBuffer.painting == false)
             {
                 if (game.Level.Ship.IsAlive == false && !btnStart.Visible)
                     btnStart.Show();
