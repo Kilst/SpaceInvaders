@@ -38,13 +38,13 @@ namespace SpaceInvaders.service
         {
             Name = level;
             ResourceLoader.LoadBitmaps(this);
-            Ship = new SpaceShip(20, 30, 0, new Vector2(3, 8), new Vector2(120, 100), shipImage);
+            Ship = new SpaceShip(17, 30, 0, new Vector2(3, 8), new Vector2(120, 100), shipImage);
             Enemies = new List<GameObject>();
             Platforms = new List<GameObject>();
             DestroyableBricks = new List<GameObject>();
             WarpPipes = new List<GameObject>();
             Coins = new List<GameObject>();
-            gifs = new Bitmap[4];
+            gifs = new Bitmap[5];
 
             // GetEnemies
             ResourceLoader.GetGameObjects(this, level, "Enemies");
@@ -60,6 +60,7 @@ namespace SpaceInvaders.service
             gifs[1] = koopaImage;
             gifs[2] = coinImage;
             gifs[3] = questionBlock;
+            gifs[4] = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\bigMario.gif");
         }
 
         private void CountBulletBills()

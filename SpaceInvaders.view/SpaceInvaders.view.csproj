@@ -88,6 +88,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\bigMario.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\bulletBill.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -64,7 +64,6 @@ namespace SpaceInvaders.service
             if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
                 // Rendering order is important
-                game.Level.Ship.FlipShipImage();
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
 
                 for (int i = 0; i < game.Level.Platforms.Count; i++)
@@ -162,8 +161,12 @@ namespace SpaceInvaders.service
                 //AnimateImage(game.Level.Ship.Bitmap);
                 //ImageAnimator.UpdateFrames();
                 // Draw Mario
-                graphics.DrawImage(game.Level.Ship.Bitmap, (int)game.Level.Ship.Position.X,
-                        (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
+                if(game.Level.Ship.IsMoving && game.Level.Ship.IsGrounded)
+                    graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.gifs[4], 1), (int)game.Level.Ship.Position.X,
+                                        (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
+                else
+                    graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.shipImage, 2), (int)game.Level.Ship.Position.X,
+                                        (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
             }
             else if (game != null)
             {

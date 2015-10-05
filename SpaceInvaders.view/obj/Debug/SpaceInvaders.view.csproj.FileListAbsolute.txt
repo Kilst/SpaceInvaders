@@ -29,3 +29,4 @@ C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\Space
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\questionBlock.gif
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\ground.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\bigMario.gif

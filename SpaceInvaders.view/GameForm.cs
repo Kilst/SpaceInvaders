@@ -177,7 +177,6 @@ namespace SpaceInvaders.view
                     // Image faces left initially
                     if (game.Level.Ship.Direction != left)
                     {
-                        game.Level.Ship.Flipped = true;
                         game.Level.Ship.Direction = left;
                     }
                     return true; //for the active control to see the keypress, return false
@@ -186,7 +185,6 @@ namespace SpaceInvaders.view
                 {
                     if (game.Level.Ship.Direction != right)
                     {
-                        game.Level.Ship.Flipped = true;
                         game.Level.Ship.Direction = right;
                     }
                     return true; //for the active control to see the keypress, return false
@@ -215,6 +213,11 @@ namespace SpaceInvaders.view
             {
                 if (timer.AddMilliseconds(10) < DateTime.Now)
                 {
+                    if (game.Level.Ship.Velocity.X < 0.5 || game.Level.Ship.Velocity.X > -0.5)
+                    {
+                        game.Level.Ship.IsMoving = false;
+                        game.Level.Ship.IsDucking = false;
+                    }
                     if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
                     {
                         if (game.Level.Ship.IsGrounded == true && game.Level.Ship.IsJumping == false)
@@ -228,17 +231,30 @@ namespace SpaceInvaders.view
                         game.Level.Ship.IsJumping = false;
                     }
                     if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)) && game.Level.Ship.IsGrounded)
+                    {
                         game.Level.Ship.Velocity.X += 0.2;
+                        game.Level.Ship.IsMoving = true;
+                    }
                     else if (m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D))
+                    {
                         game.Level.Ship.Velocity.X += 0.1;
+                        game.Level.Ship.IsMoving = true;
+                    }
                     if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)) && game.Level.Ship.IsGrounded)
+                    {
                         game.Level.Ship.Velocity.X -= 0.2;
+                        game.Level.Ship.IsMoving = true;
+                    }
                     if (m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A))
+                    {
                         game.Level.Ship.Velocity.X -= 0.1;
+                        game.Level.Ship.IsMoving = true;
+                    }
                     if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
+                    {
                         game.Level.Ship.IsDucking = true;
-                    else
-                        game.Level.Ship.IsDucking = false;
+                    }
+
                     timer = DateTime.Now;
                 }
             }

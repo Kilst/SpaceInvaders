@@ -7,7 +7,7 @@
     </Backgrounds>
 
     <DestroyableBricks>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="445" Y="180"></DestroyableBrick>
+      <QuestionBlock Width="30" Height="30" Mass="0" X="445" Y="180"></QuestionBlock>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="960" Y="180"></DestroyableBrick>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="990" Y="180"></DestroyableBrick>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="1020" Y="180"></DestroyableBrick>
@@ -16,8 +16,8 @@
     <Platforms>
 
       <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="210" Y="80"></JumpThroughPlatform>
-      <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="508" Y="80"></JumpThroughPlatform>
-      <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="806" Y="80"></JumpThroughPlatform>
+      <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="505" Y="80"></JumpThroughPlatform>
+      <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="800" Y="80"></JumpThroughPlatform>
       <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="110" Y="140"></JumpThroughPlatform>
 
       <JumpThroughPlatform Width="300" Height="5" ImageHeight="200" Mass="0" X="0" Y="280"></JumpThroughPlatform>
@@ -166,8 +166,8 @@
     </Backgrounds>
 
     <DestroyableBricks>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="430" Y="80"></DestroyableBrick>
-      <DestroyableBrick Width="30" Height="30" Mass="0" X="970" Y="100"></DestroyableBrick>
+      <QuestionBlock Width="30" Height="30" Mass="0" X="430" Y="80"></QuestionBlock>
+      <QuestionBlock Width="30" Height="30" Mass="0" X="970" Y="100"></QuestionBlock>
       <!--<DestroyableBrick Width="30" Height="30" Mass="0" X="1000" Y="130"></DestroyableBrick>
       <DestroyableBrick Width="30" Height="30" Mass="0" X="1040" Y="130"></DestroyableBrick>-->
     </DestroyableBricks>
@@ -196,7 +196,7 @@
       <Pipe Width="25" Height="25" Mass="0" X="470" Y="255"></Pipe>
       <Pipe Width="150" Height="142" Mass="0" X="520" Y="140"></Pipe>
 
-      <Pipe Width="50" Height="100" Mass="0" X="718" Y="210"></Pipe>
+      <Pipe Width="50" Height="71" Mass="0" X="718" Y="210"></Pipe>
       <Pipe Width="50" Height="100" Mass="0" X="820" Y="180"></Pipe>
 
       <WarpPipe Width="50" Height="50" Mass="0" X="1945" Y="0" TeleportX="2020" TeleportY="-230" WarpZoneName="Level1">></WarpPipe>

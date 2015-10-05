@@ -22,13 +22,14 @@ namespace SpaceInvaders.service
             level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.gif");
             level.usedBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\usedBlock.png");
             level.marioPipe = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioPipe.png");
-            level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\mario.png");
+            level.shipImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\bigMario.gif");
             level.coinImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\marioCoin.gif");
             level.npcImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\goomba.gif");
             level.koopaImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\koopagreen.gif");
             level.bulletBillImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\bulletBill.png");
+            
+            
             level.marioPipe.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            level.shipImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
         }
 
         public static void SwapQuestionBlockImage(Level level, QuestionBlock brick)

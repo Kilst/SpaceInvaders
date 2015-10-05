@@ -10,6 +10,7 @@ namespace SpaceInvaders.logic.Domain
 {
     public class SpaceShip : GameObject
     {
+        public bool IsMoving { get; set; }
         public bool IsJumping { get; set; }
         public bool IsAlive { get; set; }
         public bool IsDucking { get; set; }
@@ -26,6 +27,7 @@ namespace SpaceInvaders.logic.Domain
         {
             // We could set width, height, mass & position here (see below region)
             // but this is more elegant (less repeated code)
+            IsMoving = false;
             IsJumping = false;
             IsGrounded = false;
             IsAlive = true;
@@ -47,13 +49,18 @@ namespace SpaceInvaders.logic.Domain
         //}
         #endregion
 
-        public void FlipShipImage()
+        public Bitmap FlipShipImage(Bitmap bitmap, int imageIndex)
         {
-            if (Flipped)
+            Bitmap newBitmap = new Bitmap(bitmap);
+            if (Direction == 100 && imageIndex == 1 && Flipped == false)
             {
-                Bitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                Flipped = false;
+                newBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
             }
+            if (Direction == 100 && imageIndex == 2)
+            {
+                newBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            }
+            return newBitmap;
         }
 
         public void FallDeathCheck()

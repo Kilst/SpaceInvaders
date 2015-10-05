@@ -141,7 +141,7 @@ namespace SpaceInvaders.logic.Domain
 
         public Bitmap FlipNPCImage(Bitmap bitmap)
         {
-            Bitmap newBitmap = newBitmap = new Bitmap(bitmap);
+            Bitmap newBitmap = new Bitmap(bitmap);
             if (Velocity.X > 0)
             {
                 Flipped = true;
