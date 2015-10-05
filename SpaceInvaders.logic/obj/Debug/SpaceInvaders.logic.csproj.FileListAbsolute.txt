@@ -2,3 +2,4 @@ C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.logic\bin\Debug\Spac
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.logic\bin\Debug\SpaceInvaders.logic.pdb
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.logic\obj\Debug\SpaceInvaders.logic.dll
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.logic\obj\Debug\SpaceInvaders.logic.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.logic\obj\Debug\SpaceInvaders.logic.csprojResolveAssemblyReference.cache

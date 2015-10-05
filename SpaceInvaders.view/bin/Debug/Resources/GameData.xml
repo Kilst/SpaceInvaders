@@ -56,7 +56,7 @@
       <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="400" Y="30" MinPatrolX="110" MaxPatrolX="390"></Goomba>
       <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="500" Y="30" MinPatrolX="270" MaxPatrolX="600"></Goomba>
       <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1180" Y="130" MinPatrolX="900" MaxPatrolX="1200"></Goomba>
-      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1230" Y="130" MinPatrolX="1150" MaxPatrolX="1600"></Goomba>
+      <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1230" Y="30" MinPatrolX="1150" MaxPatrolX="1600"></Goomba>
       <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1730" Y="30" MinPatrolX="1705" MaxPatrolX="1765"></Goomba>
       <Goomba Width="15" Height="22" Mass="0" MaxVelX="3" MaxVelY="7" X="1890" Y="30" MinPatrolX="1870" MaxPatrolX="1910"></Goomba>
 

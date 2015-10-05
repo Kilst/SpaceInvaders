@@ -98,32 +98,15 @@ namespace SpaceInvaders.logic.Domain
                     || list[0].GetType() == typeof(DestroyableBrick)
                     || list[0].GetType() == typeof(JumpThroughPlatform))
                 {
-                    CollisionCheckY(list);
-                    //CollisionCheckX(list);
-
+                    foreach (GameObject item in list)
+                    {
+                        CollisionCheckY(item);
+                    }
+                    XCollisionsThisFrame = 0;
+                    YCollisionsThisFrame = 0;
+                    return;
                     // Ground platforms must be first in xml, otherwise we fall throug floor,
                     // when colliding with another object whilr on ground
-                }
-            }
-        }
-
-        private new void CollisionCheckX(List<GameObject> list)
-        {
-            foreach (Platform platform in list)
-            {
-                if (Position.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       Position.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
-                {
-
-                    if (PreviousPosition.X < platform.TopLeft.X)
-                        Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (PreviousPosition.X + Width > platform.TopRight.X)
-                        Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-                    Velocity.X = Velocity.X * -1;
-                    GetBounds();
-                    return;
                 }
             }
         }

@@ -11,7 +11,7 @@ using SpaceInvaders.logic.Domain;
 
 namespace SpaceInvaders.service
 {
-    public class GameService
+    public class GameService : IDisposable
     {
         private Random random;
         private DateTime time = DateTime.Now;
@@ -67,6 +67,8 @@ namespace SpaceInvaders.service
                 // Check to allow movement
                 if (enemy.CheckCollisions == true || enemy.GetType() == typeof(BulletBill))
                 {
+                    enemy.FallDeathCheck();
+
                     enemy.Move();
 
                     // Order is specific here
@@ -168,8 +170,9 @@ namespace SpaceInvaders.service
             }
         }
 
-        public void End()
+        public void Dispose()
         {
+            Level.Dispose();
             Level.Platforms = null;
             Level.Coins = null;
             Level.Ship = null;

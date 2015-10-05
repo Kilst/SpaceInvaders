@@ -52,7 +52,7 @@ namespace SpaceInvaders.logic.Domain
         public Bitmap FlipShipImage(Bitmap bitmap, int imageIndex)
         {
             Bitmap newBitmap = new Bitmap(bitmap);
-            if (Direction == 100 && imageIndex == 1 && Flipped == false)
+            if (Direction == 100 && imageIndex == 1)
             {
                 newBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
             }
@@ -63,7 +63,7 @@ namespace SpaceInvaders.logic.Domain
             return newBitmap;
         }
 
-        public void FallDeathCheck()
+        public override void FallDeathCheck()
         {
             if (Position.Y > 500)
                 IsAlive = false;
@@ -85,70 +85,81 @@ namespace SpaceInvaders.logic.Domain
             }
         }
 
-        private void WarpPipeY_XCheck(WarpPipe warpPipe)
+        public override void XCheck(GameObject platform)
         {
             // Hack solution that works
-            if (PreviousPosition.X + 2 < warpPipe.TopLeft.X)
-            {
-                Position.X = PreviousPosition.X + (warpPipe.TopLeft.X - PreviousPosition.X - Width) - 1;
-            }
-            else if (PreviousPosition.X + Width - 2 > warpPipe.TopRight.X)
-            {
-                Position.X = PreviousPosition.X + (warpPipe.TopRight.X - PreviousPosition.X) + 1;
-            }
-            Velocity.X = Velocity.X * 0.1;
-            GetBounds();
+            if (PreviousPosition.X < platform.TopLeft.X)
+                Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
+            else if (PreviousPosition.X + Width > platform.TopRight.X)
+                Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
+            //PreviousPosition = Position;
+            Velocity.X = Velocity.X * 0;
+            if (platform.GetType() == typeof(KoopaGreen)
+                || platform.GetType() == typeof(Goomba)
+                || platform.GetType() == typeof(BulletBill))
+                IsAlive = false;
         }
 
-        private void WarpPipeCollisionCheckX(List<GameObject> list)
+        public override void CollisionCheckY(GameObject platform)
         {
-            foreach (WarpPipe warpPipe in list)
+            // Check to allow calculating collisions
+            if (platform.CheckCollisions != false)
             {
-                if (Position.X < warpPipe.TopRight.X &&
-                       TopRight.X > warpPipe.TopLeft.X &&
-                       Position.Y < warpPipe.BottomRight.Y &&
-                       BottomRight.Y > warpPipe.TopLeft.Y)
-                {
 
-                    if (PreviousPosition.X < warpPipe.TopLeft.X)
-                        Position.X = PreviousPosition.X + (warpPipe.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (PreviousPosition.X + Width > warpPipe.TopRight.X)
-                        Position.X = PreviousPosition.X + (warpPipe.TopRight.X - PreviousPosition.X) + 1;
-                    Velocity.X = Velocity.X * 0;
-                    GetBounds();
-                    return;
-                }
-            }
-        }
-
-        private void WarpPipeCollisionCheckY(List<GameObject> list)
-        {
-            foreach (WarpPipe platform in list)
-            {
-                if (Position.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       Position.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
+                if (TopLeft.X < platform.TopRight.X &&
+                   TopRight.X > platform.TopLeft.X &&
+                   TopLeft.Y < platform.BottomRight.Y &&
+                   BottomRight.Y > platform.TopLeft.Y)
                 {
-                    if (PreviousPosition.X + Width - 2 < platform.TopLeft.X
+                    XCollisionsThisFrame++;
+
+                    if (PreviousPosition.X + Width < platform.TopLeft.X
                         || PreviousPosition.X > platform.TopRight.X)
                     {
-                        WarpPipeY_XCheck(platform);
+                        // Hack solution
+                        if (platform.GetType() != typeof(JumpThroughPlatform))
+                        {
+                            XCollisionsThisFrame++;
+                            XCheck(platform);
+                            return;
+                        }
+                    }
+
+                    YCollisionsThisFrame++;
+
+                    if ((BottomLeft.Y) >= platform.TopLeft.Y
+                        && (BottomLeft.Y) <= platform.TopLeft.Y + (platform.Height / 2)
+                        && (platform.GetType() == typeof(KoopaGreen)
+                        || platform.GetType() == typeof(Goomba)
+                        || platform.GetType() == typeof(BulletBill)))
+                    {
+                        Enemy enemy = (Enemy)platform;
+                        // Disable enemy
+                        enemy.Enabled = false;
+                        IsGrounded = false;
+                        Velocity.Y = -4;
+                        Position = PreviousPosition;
+                        GetBounds();
                         return;
                     }
 
-                    if ((BottomLeft.Y) > platform.TopLeft.Y
-                        && (BottomLeft.Y) < platform.TopLeft.Y + (platform.Height / 5))
+                    if ((BottomLeft.Y) >= platform.TopLeft.Y
+                        && (BottomLeft.Y) <= platform.TopLeft.Y + (platform.Height / 5))
                     {
-                        if (IsDucking == true)
+                        if (platform.GetType() == typeof(WarpPipe))
                         {
-                            WarpLocation = platform.WarpLoc;
-                            WarpZoneName = platform.WarpZoneName;
-                            IsZoning = true;
-                            Velocity.X = 0;
-                            Velocity.Y = 0;
+                            WarpPipe warpPipe = (WarpPipe)platform;
+                            if (IsDucking == true)
+                            {
+                                WarpLocation = warpPipe.WarpLoc;
+                                WarpZoneName = warpPipe.WarpZoneName;
+                                IsZoning = true;
+                                Velocity.X = 0;
+                                Velocity.Y = 0;
+                            }
                         }
                         IsGrounded = true;
+                        //Position.Y = PreviousPosition.Y + (platform.Position.Y - PreviousPosition.Y - Height);
                     }
                     else
                     {
@@ -156,21 +167,48 @@ namespace SpaceInvaders.logic.Domain
                         //Position.Y = PreviousPosition.Y + (platform.Position.Y + platform.Height - PreviousPosition.Y);
                     }
 
-                    Velocity.Y = 0;
+                    if (platform.GetType() == typeof(KoopaGreen)
+                        || platform.GetType() == typeof(Goomba)
+                        || platform.GetType() == typeof(BulletBill))
+                        IsAlive = false;
 
-                    if (PreviousPosition.Y <= platform.TopLeft.Y)
+                    if (platform.GetType() != typeof(JumpThroughPlatform))
+                        Velocity.Y = 0;
+
+                    if (PreviousPosition.Y + Height <= platform.TopLeft.Y)
                     {
+                        if (platform.GetType() == typeof(JumpThroughPlatform))
+                            Velocity.Y = 0;
                         //IsGrounded = true;
                         Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                     }
-                    else
+                    else if (PreviousPosition.Y >= platform.BottomRight.Y
+                        && platform.GetType() == typeof(QuestionBlock))
                     {
-                        Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
+                        QuestionBlock brick = (QuestionBlock)platform;
+                        if (!brick.Used)
+                        {
+                            brick.Used = true;
+                        }
+                    }
+                    else if (PreviousPosition.Y >= platform.BottomRight.Y
+                            && platform.GetType() == typeof(DestroyableBrick))
+                    {
+                        platform.Enabled = false;
+                    }
+                    if (PreviousPosition.Y >= platform.BottomRight.Y)
+                    {
+                        if (platform.GetType() != typeof(JumpThroughPlatform))
+                            Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
                         //IsGrounded = false;
                     }
                     //Position.Y = PreviousPosition.Y;
                     GetBounds();
                     return;
+                }
+                else if (YCollisionsThisFrame == 0 && IsGrounded == true && platform.GetType() == typeof(Platform))
+                {
+                    IsGrounded = false;
                 }
             }
         }
@@ -179,10 +217,22 @@ namespace SpaceInvaders.logic.Domain
         {
             if (list.Count > 0)
             {
-                if (list[0].GetType().Equals(typeof(WarpPipe)))
+                if (list[0].GetType().Equals(typeof(GameObject))
+                    || list[0].GetType().Equals(typeof(WarpPipe))
+                    || list[0].GetType().Equals(typeof(Goomba))
+                    || list[0].GetType().Equals(typeof(KoopaGreen))
+                    || list[0].GetType().Equals(typeof(BulletBill))
+                    || list[0].GetType().Equals(typeof(DestroyableBrick))
+                    || list[0].GetType().Equals(typeof(QuestionBlock)))
                 {
-                    WarpPipeCollisionCheckY(list);
-                    //WarpPipeCollisionCheckX(list);
+                    for (int i = 0; i < list.Count(); i++)
+                    {
+                        CollisionCheckY(list[i]);
+                        if (!list[i].Enabled)
+                            list.Remove(list[i]);
+                    }
+                    XCollisionsThisFrame = 0;
+                    YCollisionsThisFrame = 0;
                     return;
                 }
 
@@ -191,134 +241,8 @@ namespace SpaceInvaders.logic.Domain
                     CoinCollisionCheck(list);
                     return;
                 }
-
-                else if (list[0].GetType().Equals(typeof(Goomba))
-                    || list[0].GetType().Equals(typeof(KoopaGreen))
-                    || list[0].GetType().Equals(typeof(BulletBill)))
-                {
-                    EnemyCollisionCheckY(list);
-                    //EnemyCollisionCheckX(list);
-                    return;
-                }
-                else if (list[0].GetType().Equals(typeof(QuestionBlock))
-                        || list[0].GetType().Equals(typeof(DestroyableBrick)))
-                {
-                    EnemyCollisionCheckY(list);
-                    EnemyCollisionCheckX(list);
-                    return;
-                }
                 else
                     base.CollisionCheck(list);
-            }
-        }
-
-        public void EnemyCollisionCheckX(List<GameObject> list)
-        {
-            foreach (GameObject platform in list)
-            {
-                if (Position.X < platform.TopRight.X &&
-                        TopRight.X > platform.TopLeft.X &&
-                        Position.Y < platform.BottomRight.Y &&
-                        BottomRight.Y > platform.TopLeft.Y + 1)
-                {
-
-                    if (PreviousPosition.X < platform.TopLeft.X)
-                        Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                    else if (PreviousPosition.X + Width > platform.TopRight.X)
-                        Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-                    Velocity.X = Velocity.X * 0;
-                    GetBounds();
-                    if (platform.GetType() != typeof(QuestionBlock)
-                        && platform.GetType() != typeof(DestroyableBrick))
-                        IsAlive = false;
-                }
-            }
-        }
-
-        private void EnemyY_XCheck(GameObject platform)
-        {
-            if (Position.X < platform.TopRight.X &&
-                        TopRight.X > platform.TopLeft.X &&
-                        Position.Y < platform.BottomRight.Y &&
-                        BottomRight.Y > platform.TopLeft.Y + 1)
-            {
-                // Hack solution that works
-                if (PreviousPosition.X < platform.TopLeft.X)
-                    Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                else if (PreviousPosition.X + Width > platform.TopRight.X)
-                    Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-                Velocity.X = Velocity.X * 0.5;
-                if (platform.GetType() != typeof(QuestionBlock)
-                    && platform.GetType() != typeof(DestroyableBrick))
-                    IsAlive = false;
-                GetBounds();
-            }
-        }
-
-        public void EnemyCollisionCheckY(List<GameObject> list)
-        {
-            foreach (GameObject platform in list)
-            {
-                if (Position.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       Position.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
-                {
-                    if (PreviousPosition.X + Width < platform.TopLeft.X
-                        || PreviousPosition.X > platform.TopRight.X)
-                    {
-                        EnemyY_XCheck(platform);
-                        return;
-                    }
-
-
-                    if ((BottomLeft.Y) > platform.TopLeft.Y
-                        && (BottomLeft.Y) < platform.TopLeft.Y + (platform.Height / 2))
-                    {
-                        if (platform.GetType() != typeof(QuestionBlock)
-                            && platform.GetType() != typeof(DestroyableBrick))
-                        {
-                            // Disable enemy
-                            list.Remove(platform);
-                            IsGrounded = false;
-                            Velocity.Y = -4;
-                            Position = PreviousPosition;
-                            GetBounds();
-                            return;
-                        }
-                        IsGrounded = true;
-                    }
-                    else
-                        IsGrounded = false;
-                    Velocity.Y = 0;
-                    if (platform.GetType() != typeof(QuestionBlock)
-                        && platform.GetType() != typeof(DestroyableBrick))
-                        IsAlive = false;
-
-                    if (PreviousPosition.Y + Height - 1 <= platform.TopLeft.Y)
-                    {
-                        Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
-                    }
-                    else
-                    {
-                        if (platform.GetType() == typeof(QuestionBlock))
-                        {
-                            QuestionBlock brick = (QuestionBlock)platform;
-                            if (!brick.Used)
-                            {
-                                brick.Used = true;
-                            }
-                        }
-                        else if (platform.GetType() == typeof(DestroyableBrick))
-                        {
-                            list.Remove(platform);
-                        }
-                        Position.Y = PreviousPosition.Y + 2 + (platform.BottomRight.Y - PreviousPosition.Y);
-                        return;
-                    }
-                    //Position.Y = PreviousPosition.Y;
-                    GetBounds();
-                }
             }
         }
     }

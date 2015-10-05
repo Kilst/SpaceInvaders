@@ -12,6 +12,11 @@ namespace SpaceInvaders.logic.Domain
     {
         private const double gravity = 0.3;
 
+        public bool Enabled { get; set; }
+
+        public int XCollisionsThisFrame { get; set; }
+        public int YCollisionsThisFrame { get; set; }
+
         public Bitmap Bitmap { get; set; }
         public bool Flipped { get; set; }
         public bool CheckCollisions { get; set; }
@@ -64,6 +69,9 @@ namespace SpaceInvaders.logic.Domain
 
         public GameObject(int width, int height, float mass, Vector2 position, Bitmap bitmap)
         {
+            Enabled = true;
+            XCollisionsThisFrame = 0;
+            YCollisionsThisFrame = 0;
             this.Bitmap = bitmap;
             this.CheckCollisions = true;
             this.Width = width;
@@ -78,6 +86,7 @@ namespace SpaceInvaders.logic.Domain
 
         public GameObject(int width, int height, float mass, Vector2 maxVelocity, Vector2 position, Bitmap bitmap)
         {
+            Enabled = true;
             this.Bitmap = bitmap;
             this.CheckCollisions = true;
             this.Width = width;
@@ -125,18 +134,18 @@ namespace SpaceInvaders.logic.Domain
             GetBounds();
         }
 
+        public virtual void FallDeathCheck()
+        {
+            if (Position.Y > 500)
+                Enabled = false;
+        }
+
         public bool CheckDistance(GameObject obj)
         {
             // Check X distances
             double myPosition = this.TopLeft.X;
             double objPositionLeft = obj.TopLeft.X;
             double objPositionRight = obj.TopRight.X;
-
-            // Normalise the distances
-            //if (myPosition < 0)
-            //    myPosition = myPosition * -1;
-            //if (objPosition < 0)
-            //    objPosition = objPosition * -1;
 
             // Compare (check the object is on the screen)
             if (objPositionLeft - myPosition < 800 && objPositionRight - myPosition > -500)
@@ -202,8 +211,12 @@ namespace SpaceInvaders.logic.Domain
                     || list[0].GetType() == typeof(Pipe)
                     || list[0].GetType() == typeof(JumpThroughPlatform))
                 {
-                    CollisionCheckY(list);
-                    CollisionCheckX(list);
+                    foreach (GameObject item in list)
+                    {
+                        CollisionCheckY(item);
+                    }
+                    XCollisionsThisFrame = 0;
+                    YCollisionsThisFrame = 0;
                     return;
                     // Ground platforms must be first in xml, otherwise we fall throug floor,
                     // when colliding with another object whilr on ground
@@ -211,133 +224,7 @@ namespace SpaceInvaders.logic.Domain
             }
         }
 
-        public void CollisionCheckX(List<GameObject> list)
-        {
-            foreach (Platform platform in list)
-            {
-                if (platform.GetType() != typeof(JumpThroughPlatform))
-                {
-                    if (TopLeft.X < platform.TopRight.X &&
-                           TopRight.X > platform.TopLeft.X &&
-                           TopLeft.Y < platform.BottomRight.Y &&
-                           BottomRight.Y > platform.TopLeft.Y)
-                    {
-
-                        if (PreviousPosition.X < platform.TopLeft.X)
-                            Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-                        else if (PreviousPosition.X + Width > platform.TopRight.X)
-                            Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-                        Velocity.X = Velocity.X * 0;
-                        GetBounds();
-                        return;
-                    }
-                }
-            }
-        }
-
-        #region collision code (unused)
-        //public void CollisionCheck(List<Platform> list)
-        //{
-        //    bool TopLeftColliding = false;
-        //    bool TopRightColliding = false;
-        //    bool BottomLeftColliding = false;
-        //    bool BottomRightColliding = false;
-        //    foreach (Platform platform in list)
-        //    {
-        //        if (Position.X < platform.Position.X + platform.Width &&
-        //               Position.X + Width > platform.Position.X &&
-        //               Position.Y < platform.Position.Y + platform.Height &&
-        //               Height + Position.Y > platform.Position.Y)
-        //        {
-        //            if (TopLeft.X > platform.TopLeft.X
-        //                && TopLeft.X < platform.TopRight.X
-        //                && TopLeft.Y > platform.TopLeft.Y
-        //                && TopLeft.Y < platform.BottomRight.Y)
-        //            {
-        //                Tuple<bool, bool> check = TopLeft.GreaterThan(platform.BottomRight);
-        //                if (check.Item1 == true && check.Item2 == false)
-        //                {
-        //                    CollisionCheckX(list);
-        //                    //CollisionCheckY(list);
-        //                    return;
-        //                }
-        //                else
-        //                {
-        //                    CollisionCheckY(list);
-        //                    //CollisionCheckX(list);
-        //                    return;
-        //                }
-        //                TopLeftColliding = true;
-        //                //if (TopLeft.X - platform.TopRight.X < 0)
-        //            }
-        //            if (TopRight.X > platform.TopLeft.X
-        //                && TopRight.X < platform.TopRight.X
-        //                && TopRight.Y > platform.TopLeft.Y
-        //                && TopRight.Y < platform.BottomRight.Y)
-        //            {
-        //                Tuple<bool,bool> check = TopRight.GreaterThan(platform.BottomLeft);
-        //                if (check.Item1 == true && check.Item2 == false)
-        //                {
-        //                    CollisionCheckX(list);
-        //                    //CollisionCheckY(list);
-        //                    return;
-        //                }
-        //                else
-        //                {
-        //                    CollisionCheckY(list);
-        //                    //CollisionCheckX(list);
-        //                    return;
-        //                }
-        //                TopRightColliding = true;
-        //            }
-        //            if (BottomLeft.X > platform.TopLeft.X
-        //                && BottomLeft.X < platform.TopRight.X
-        //                && BottomLeft.Y > platform.TopLeft.Y
-        //                && BottomLeft.Y < platform.BottomRight.Y)
-        //            {
-        //                Tuple<bool, bool> check = BottomLeft.GreaterThan(platform.TopRight);
-        //                if (check.Item1 == true && check.Item2 == false)
-        //                {
-        //                    CollisionCheckX(list);
-        //                    //CollisionCheckY(list);
-        //                    return;
-        //                }
-        //                else
-        //                {
-        //                    CollisionCheckY(list);
-        //                    //CollisionCheckX(list);
-        //                    return;
-        //                }
-        //                BottomLeftColliding = true;
-        //            }
-        //            if (BottomRight.X > platform.TopLeft.X
-        //                && BottomRight.X < platform.TopRight.X
-        //                && BottomRight.Y > platform.TopLeft.Y
-        //                && BottomRight.Y < platform.BottomRight.Y)
-        //            {
-        //                Tuple<bool, bool> check = BottomRight.GreaterThan(platform.TopLeft);
-        //                if (check.Item1 == true && check.Item2 == false)
-        //                {
-        //                    CollisionCheckX(list);
-        //                    //CollisionCheckY(list);
-        //                    return;
-        //                }
-        //                else
-        //                {
-        //                    CollisionCheckY(list);
-        //                    //CollisionCheckX(list);
-        //                    return;
-        //                }
-        //                BottomRightColliding = true;
-        //            }
-        //            GetBounds();
-        //            return;
-        //        }
-        //    }
-        //}
-        #endregion
-
-        private void Y_XCheck(Platform platform)
+        public virtual void XCheck(GameObject platform)
         {
             // Hack solution that works
             if (PreviousPosition.X < platform.TopLeft.X)
@@ -345,70 +232,70 @@ namespace SpaceInvaders.logic.Domain
             else if (PreviousPosition.X + Width > platform.TopRight.X)
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
             //PreviousPosition = Position;
-            Velocity.X = Velocity.X * 0.5;
-            GetBounds();
+            Velocity.X = Velocity.X * 0;
         }
 
-        public void CollisionCheckY(List<GameObject> list)
+        public virtual void CollisionCheckY(GameObject platform)
         {
-            foreach (Platform platform in list)
-            {
                 // Check to allow calculating collisions
-                if (platform.CheckCollisions != false)
+            if (platform.CheckCollisions != false)
+            {
+
+                if (TopLeft.X < platform.TopRight.X &&
+                   TopRight.X > platform.TopLeft.X &&
+                   TopLeft.Y < platform.BottomRight.Y &&
+                   BottomRight.Y > platform.TopLeft.Y)
                 {
+                    XCollisionsThisFrame++;
 
-                    if (TopLeft.X < platform.TopRight.X &&
-                       TopRight.X > platform.TopLeft.X &&
-                       TopLeft.Y < platform.BottomRight.Y &&
-                       BottomRight.Y > platform.TopLeft.Y)
+                    if (PreviousPosition.X + Width < platform.TopLeft.X
+                        || PreviousPosition.X > platform.TopRight.X)
                     {
-                        if (PreviousPosition.X + Width - 1 < platform.TopLeft.X
-                            || PreviousPosition.X + 1 > platform.TopRight.X)
+                        // Hack solution
+                        if (platform.GetType() != typeof(JumpThroughPlatform))
                         {
-                            // Hack solution
-                            if (platform.GetType() != typeof(JumpThroughPlatform))
-                            {
-                                Y_XCheck(platform);
-                                return;
-                            }
+                            XCollisionsThisFrame++;
+                            XCheck(platform);
+                            return;
                         }
+                    }
 
+                    YCollisionsThisFrame++;
 
-                        if ((BottomLeft.Y) >= platform.TopLeft.Y
-                            && (BottomLeft.Y) <= platform.TopLeft.Y + (platform.Height / 5))
-                        {
-                            IsGrounded = true;
-                            //Position.Y = PreviousPosition.Y + (platform.Position.Y - PreviousPosition.Y - Height);
-                        }
-                        else
-                        {
-                            IsGrounded = false;
-                            //Position.Y = PreviousPosition.Y + (platform.Position.Y + platform.Height - PreviousPosition.Y);
-                        }
-                        if(platform.GetType() != typeof(JumpThroughPlatform))
-                            Velocity.Y = 0;
-
-                        if (PreviousPosition.Y + Height <= platform.TopLeft.Y)
-                        {
-                            if (platform.GetType() == typeof(JumpThroughPlatform))
-                                Velocity.Y = 0;
-                            //IsGrounded = true;
-                            Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
-                        }
-                        else
-                        {
-                            if(platform.GetType() != typeof(JumpThroughPlatform))
-                                Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
-                            //IsGrounded = false;
-                        }
-                        //Position.Y = PreviousPosition.Y;
-                        GetBounds();
-                        return;
+                    if ((BottomLeft.Y) >= platform.TopLeft.Y
+                        && (BottomLeft.Y) <= platform.TopLeft.Y + (platform.Height / 5))
+                    {
+                        IsGrounded = true;
+                        //Position.Y = PreviousPosition.Y + (platform.Position.Y - PreviousPosition.Y - Height);
                     }
                     else
                     {
                         IsGrounded = false;
+                        //Position.Y = PreviousPosition.Y + (platform.Position.Y + platform.Height - PreviousPosition.Y);
                     }
+                    if (platform.GetType() != typeof(JumpThroughPlatform))
+                        Velocity.Y = 0;
+
+                    if (PreviousPosition.Y + Height <= platform.TopLeft.Y)
+                    {
+                        if (platform.GetType() == typeof(JumpThroughPlatform))
+                            Velocity.Y = 0;
+                        //IsGrounded = true;
+                        Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
+                    }
+                    else if (PreviousPosition.Y >= platform.BottomRight.Y)
+                    {
+                        if (platform.GetType() != typeof(JumpThroughPlatform))
+                            Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
+                        //IsGrounded = false;
+                    }
+                    //Position.Y = PreviousPosition.Y;
+                    GetBounds();
+                    return;
+                }
+                else if (YCollisionsThisFrame == 0 && IsGrounded == true)
+                {
+                    IsGrounded = false;
                 }
             }
         }

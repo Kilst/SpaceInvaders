@@ -142,6 +142,8 @@ namespace SpaceInvaders.view
 
                 
             }
+
+            // GameOver Loop
             DateTime timer = DateTime.Now;
             while (game != null && drawBuffer != null)
             {
@@ -230,25 +232,22 @@ namespace SpaceInvaders.view
                     {
                         game.Level.Ship.IsJumping = false;
                     }
-                    if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)) && game.Level.Ship.IsGrounded)
+                    if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)))
                     {
-                        game.Level.Ship.Velocity.X += 0.2;
+                        if (game.Level.Ship.IsGrounded)
+                            game.Level.Ship.Velocity.X += 0.2;
+                        else
+                            game.Level.Ship.Velocity.X += 0.1;
                         game.Level.Ship.IsMoving = true;
                     }
-                    else if (m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D))
+                    if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)))
                     {
-                        game.Level.Ship.Velocity.X += 0.1;
+                        if(game.Level.Ship.IsGrounded)
+                            game.Level.Ship.Velocity.X -= 0.2;
+                        else
+                            game.Level.Ship.Velocity.X -= 0.1;
                         game.Level.Ship.IsMoving = true;
-                    }
-                    if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)) && game.Level.Ship.IsGrounded)
-                    {
-                        game.Level.Ship.Velocity.X -= 0.2;
-                        game.Level.Ship.IsMoving = true;
-                    }
-                    if (m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A))
-                    {
-                        game.Level.Ship.Velocity.X -= 0.1;
-                        game.Level.Ship.IsMoving = true;
+
                     }
                     if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
                     {
@@ -268,7 +267,7 @@ namespace SpaceInvaders.view
             if (keysThread != null && keysThread.IsAlive == true)
                 keysThread.Abort();
             if (game != null)
-                game.End();
+                game.Dispose();
         }
     }
 
