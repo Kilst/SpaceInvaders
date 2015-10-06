@@ -12,9 +12,14 @@ namespace SpaceInvaders.service
     public class Level : IDisposable
     {
         public Bitmap[] gifs;
+        public Bitmap loadingImage;
         public Bitmap gameOver;
         public Bitmap backgroundImage;
+        public Bitmap foregroundImage;
+        public Bitmap platformGreyImage;
+        public Bitmap platformWoodenImage;
         public Bitmap platformImage;
+        public Bitmap invisiblePlatformImage;
         public Bitmap groundImage;
         public Bitmap questionBlock;
         public Bitmap usedBlock;
@@ -24,6 +29,9 @@ namespace SpaceInvaders.service
         public Bitmap npcImage;
         public Bitmap koopaImage;
         public Bitmap bulletBillImage;
+
+        public double offsetX;
+        public double offsetY;
 
         public List<GameObject> Platforms { get; set; }
         public List<GameObject> DestroyableBricks { get; set; }

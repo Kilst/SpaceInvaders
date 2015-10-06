@@ -88,12 +88,17 @@ namespace SpaceInvaders.logic.Domain
         public override void XCheck(GameObject platform)
         {
             // Hack solution that works
-            if (PreviousPosition.X < platform.TopLeft.X)
+            if (PreviousPosition.X + Width < platform.TopLeft.X && platform.TopLeft.Y < BottomLeft.Y - 1)
+            {
                 Position.X = PreviousPosition.X + (platform.TopLeft.X - PreviousPosition.X - Width) - 1;
-            else if (PreviousPosition.X + Width > platform.TopRight.X)
+                Velocity.X = Velocity.X * 0;
+            }
+            else if (PreviousPosition.X > platform.TopRight.X && platform.TopLeft.Y < BottomLeft.Y - 1)
+            {
                 Position.X = PreviousPosition.X + (platform.TopRight.X - PreviousPosition.X) + 1;
-            //PreviousPosition = Position;
-            Velocity.X = Velocity.X * 0;
+                Velocity.X = Velocity.X * 0;
+            }
+
             if (platform.GetType() == typeof(KoopaGreen)
                 || platform.GetType() == typeof(Goomba)
                 || platform.GetType() == typeof(BulletBill))
@@ -111,7 +116,6 @@ namespace SpaceInvaders.logic.Domain
                    TopLeft.Y < platform.BottomRight.Y &&
                    BottomRight.Y > platform.TopLeft.Y)
                 {
-                    XCollisionsThisFrame++;
 
                     if (PreviousPosition.X + Width < platform.TopLeft.X
                         || PreviousPosition.X > platform.TopRight.X)
@@ -161,11 +165,6 @@ namespace SpaceInvaders.logic.Domain
                         IsGrounded = true;
                         //Position.Y = PreviousPosition.Y + (platform.Position.Y - PreviousPosition.Y - Height);
                     }
-                    else
-                    {
-                        IsGrounded = false;
-                        //Position.Y = PreviousPosition.Y + (platform.Position.Y + platform.Height - PreviousPosition.Y);
-                    }
 
                     if (platform.GetType() == typeof(KoopaGreen)
                         || platform.GetType() == typeof(Goomba)
@@ -182,31 +181,33 @@ namespace SpaceInvaders.logic.Domain
                         //IsGrounded = true;
                         Position.Y = PreviousPosition.Y + (platform.TopLeft.Y - PreviousPosition.Y - Height);
                     }
-                    else if (PreviousPosition.Y >= platform.BottomRight.Y
-                        && platform.GetType() == typeof(QuestionBlock))
+                    else if (PreviousPosition.Y >= platform.BottomRight.Y)
                     {
-                        QuestionBlock brick = (QuestionBlock)platform;
-                        if (!brick.Used)
+                        if (platform.GetType() == typeof(QuestionBlock))
                         {
-                            brick.Used = true;
+                            QuestionBlock brick = (QuestionBlock)platform;
+                            if (!brick.Used)
+                            {
+                                brick.Used = true;
+                            }
                         }
-                    }
-                    else if (PreviousPosition.Y >= platform.BottomRight.Y
-                            && platform.GetType() == typeof(DestroyableBrick))
-                    {
-                        platform.Enabled = false;
-                    }
-                    if (PreviousPosition.Y >= platform.BottomRight.Y)
-                    {
+                        else if (platform.GetType() == typeof(DestroyableBrick))
+                        {
+                            platform.Enabled = false;
+                        }
+
                         if (platform.GetType() != typeof(JumpThroughPlatform))
                             Position.Y = PreviousPosition.Y + (platform.BottomRight.Y - PreviousPosition.Y);
-                        //IsGrounded = false;
                     }
                     //Position.Y = PreviousPosition.Y;
                     GetBounds();
                     return;
                 }
-                else if (YCollisionsThisFrame == 0 && IsGrounded == true && platform.GetType() == typeof(Platform))
+                else if (YCollisionsThisFrame == 0 
+                        && IsGrounded == true 
+                        && (platform.GetType() == typeof(Platform)
+                        || platform.GetType() == typeof(Pipe)
+                        || platform.GetType() == typeof(JumpThroughPlatform)))
                 {
                     IsGrounded = false;
                 }
@@ -217,13 +218,7 @@ namespace SpaceInvaders.logic.Domain
         {
             if (list.Count > 0)
             {
-                if (list[0].GetType().Equals(typeof(GameObject))
-                    || list[0].GetType().Equals(typeof(WarpPipe))
-                    || list[0].GetType().Equals(typeof(Goomba))
-                    || list[0].GetType().Equals(typeof(KoopaGreen))
-                    || list[0].GetType().Equals(typeof(BulletBill))
-                    || list[0].GetType().Equals(typeof(DestroyableBrick))
-                    || list[0].GetType().Equals(typeof(QuestionBlock)))
+                if (list[0].GetType() != typeof(Coin))
                 {
                     for (int i = 0; i < list.Count(); i++)
                     {
@@ -241,8 +236,6 @@ namespace SpaceInvaders.logic.Domain
                     CoinCollisionCheck(list);
                     return;
                 }
-                else
-                    base.CollisionCheck(list);
             }
         }
     }

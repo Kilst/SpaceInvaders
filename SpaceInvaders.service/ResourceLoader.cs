@@ -15,9 +15,14 @@ namespace SpaceInvaders.service
         public static void LoadBitmaps(Level level)
         {
             // Load bitmaps
+            level.loadingImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\loading.gif");
             level.gameOver = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\gameOver.gif");
+            GetGameObjects(level, level.Name, "Foregrounds");
             GetGameObjects(level, level.Name, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
+            level.platformGreyImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\platformGrey.png");
+            level.platformWoodenImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\platformWooden.png");
+            level.invisiblePlatformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\invisiblePlatform.png");
             level.groundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\ground.png");
             level.questionBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\questionBlock.gif");
             level.usedBlock = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\usedBlock.png");
@@ -63,6 +68,15 @@ namespace SpaceInvaders.service
                     case "Platform":
                         level.Platforms.Add(new Platform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformImage)));
                         break;
+                    case "PlatformGrey":
+                        level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("ImageHeight")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformGreyImage)));
+                        break;
+                    case "PlatformWooden":
+                        level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("ImageHeight")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.platformWoodenImage)));
+                        break;
+                    case "InvisiblePlatform":
+                        level.Platforms.Add(new Platform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.invisiblePlatformImage)));
+                        break;
                     case "JumpThroughPlatform":
                         level.Platforms.Add(new JumpThroughPlatform(int.Parse(element.Attribute(XName.Get("Width")).Value), int.Parse(element.Attribute(XName.Get("Height")).Value), int.Parse(element.Attribute(XName.Get("ImageHeight")).Value), int.Parse(element.Attribute(XName.Get("Mass")).Value), new Vector2(int.Parse(element.Attribute(XName.Get("X")).Value), int.Parse(element.Attribute(XName.Get("Y")).Value)), new Bitmap(level.groundImage)));
                         break;
@@ -92,6 +106,9 @@ namespace SpaceInvaders.service
                         break;
                     case "Background":
                         level.backgroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\" + element.Attribute(XName.Get("Name")).Value);
+                        break;
+                    case "Foreground":
+                        level.foregroundImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\stripeForeground.png");
                         break;
                 }
             }

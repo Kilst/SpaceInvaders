@@ -130,9 +130,8 @@ namespace SpaceInvaders.view
                     time = DateTime.Now;
                     if (game.Level.Ship.IsZoning == true)
                     {
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                         newLevel = game.UpdateLevel();
-                        drawBuffer = null;
                         drawBuffer = new DrawBuffer(game.Level);
                     }
 

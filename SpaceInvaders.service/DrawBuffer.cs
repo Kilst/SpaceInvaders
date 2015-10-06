@@ -61,7 +61,12 @@ namespace SpaceInvaders.service
             graphics = Graphics.FromImage(buffer);
             ImageAnimator.UpdateFrames();
             // Render graphics
-            if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
+            if (game.Level.Ship.IsZoning)
+            {
+                graphics.Clear(Color.Black);
+                graphics.DrawImage(game.Level.loadingImage, 0, 0, 700, 300);
+            }
+            else if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
                 // Rendering order is important
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
@@ -161,14 +166,16 @@ namespace SpaceInvaders.service
                 //AnimateImage(game.Level.Ship.Bitmap);
                 //ImageAnimator.UpdateFrames();
                 // Draw Mario
-                if(game.Level.Ship.IsMoving && game.Level.Ship.IsGrounded)
+                if (game.Level.Ship.IsMoving && game.Level.Ship.IsGrounded)
                     graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.gifs[4], 1), (int)game.Level.Ship.Position.X,
                                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
                 else
                     graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.shipImage, 2), (int)game.Level.Ship.Position.X,
                                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
+                if(thisLevel.foregroundImage != null)
+                graphics.DrawImage(game.Level.foregroundImage, new Point((int)thisLevel.offsetX, (int)thisLevel.offsetY - 302));
             }
-            else if (game != null)
+            else if (game != null && !game.Level.Ship.IsZoning)
             {
                 graphics.Clear(Color.Black);
                 if (game.Level.Ship.IsAlive == false)

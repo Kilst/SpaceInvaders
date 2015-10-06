@@ -21,7 +21,7 @@ namespace SpaceInvaders.service
         public GameService()
         {
             random = new Random();
-            Level = new Level("Level1");
+            Level = new Level("Level3");
             previous = Level;
         }
 
@@ -128,13 +128,17 @@ namespace SpaceInvaders.service
             if ((Level.Ship.Position.X > 500 || Level.Ship.Position.X < 120)
                 && (Level.Ship.PreviousPosition.X > 500 || Level.Ship.PreviousPosition.X < 120))
             {
-                MoveScreen(new Vector2(-(Level.Ship.Position.X-Level.Ship.PreviousPosition.X), 0));
+                double offsetX = -(Level.Ship.Position.X - Level.Ship.PreviousPosition.X);
+                Level.offsetX += offsetX;
+                MoveScreen(new Vector2(offsetX, 0));
                 Level.Ship.Position.X = Level.Ship.PreviousPosition.X;
             }
             // Y Check
             if ((Level.Ship.Position.Y < 80 || Level.Ship.Position.Y > 220) && Level.Platforms[0].OffsetY > -80)
             {
-                MoveScreen(new Vector2(0, -(Level.Ship.Position.Y - Level.Ship.PreviousPosition.Y)));
+                double offsetY = -(Level.Ship.Position.Y - Level.Ship.PreviousPosition.Y);
+                Level.offsetY += offsetY;
+                MoveScreen(new Vector2(0, offsetY));
                 Level.Ship.Position.Y = Level.Ship.PreviousPosition.Y;
             }
             //Level.Ship.GetBounds();
