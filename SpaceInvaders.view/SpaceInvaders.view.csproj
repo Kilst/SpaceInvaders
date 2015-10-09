@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E377F22C-F69C-459F-A882-33C77554BFE6}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SpaceInvaders.view</RootNamespace>
     <AssemblyName>SpaceInvaders.view</AssemblyName>
@@ -31,6 +31,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Benchmark.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,10 +83,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpaceInvaders.logic\SpaceInvaders.logic.csproj">
-      <Project>{d1ff3056-a9c1-4347-8083-0efa9a1bb439}</Project>
-      <Name>SpaceInvaders.logic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SpaceInvaders.service\SpaceInvaders.service.csproj">
       <Project>{8427d235-6824-4f5c-b9d0-389de7f06b07}</Project>
       <Name>SpaceInvaders.service</Name>

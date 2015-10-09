@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastTypeHelper.cs" />
+    <Compile Include="Directions.cs" />
     <Compile Include="DrawBuffer.cs" />
     <Compile Include="GameService.cs" />
     <Compile Include="Level.cs" />

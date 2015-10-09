@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //..
 using System.Threading;
-using SpaceInvaders.logic;
-using SpaceInvaders.logic.Domain;
 using SpaceInvaders.service;
+using System.Timers;
+
+// (DateTime.Now is REALLY EXPENSIVE)
+// (DateTime.Now is REALLY EXPENSIVE)
+// (DateTime.Now is REALLY EXPENSIVE)
+// (DateTime.Now is REALLY EXPENSIVE)
+// (DateTime.Now is REALLY EXPENSIVE)
 
 namespace SpaceInvaders.view
 {
@@ -78,9 +83,15 @@ namespace SpaceInvaders.view
         GameService game;
         DateTime time;
         DrawBuffer drawBuffer;
+        Graphics g;
+        System.Timers.Timer gameTimer;
+        System.Timers.Timer keypressTimer;
+        private bool newLevel = false;
 
-        const int left = 100;
-        const int right = 101;
+        private const int left = 100;
+        private const int right = 101;
+        private const int up = 102;
+        private const int down = 103;
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -89,18 +100,26 @@ namespace SpaceInvaders.view
             if (thread == null)
             {
                 btnStart.Hide();
-                
+                gameTimer = null;
+                keypressTimer = null;
                 time = new DateTime();
+                g = this.CreateGraphics();
                 game = new GameService();
                 drawBuffer = new DrawBuffer(game.Level);
-                thread = new Thread(new ThreadStart(GameLoop));
-                thread.Start();
-                keysThread = new Thread(new ThreadStart(KeyLoop));
-                keysThread.Start();
+                gameTimer = new System.Timers.Timer(25);
+                gameTimer.Elapsed += new ElapsedEventHandler(GameTimedEvent);
+                gameTimer.Enabled = true;
+                keypressTimer = new System.Timers.Timer(1);
+                keypressTimer.Elapsed += new ElapsedEventHandler(KeypressTimedEvent);
+                keypressTimer.Enabled = true;
+                //thread = new Thread(new ThreadStart(GameLoop));
+                //thread.Start();
+                //keysThread = new Thread(new ThreadStart(KeyLoop));
+                //keysThread.Start();
             }
             else
             {
-                game.Level.Ship.IsAlive = false;
+                game.SetPlayerAlive(false);
                 time = DateTime.Now;
                 while (time.AddSeconds(2) > DateTime.Now)
                 {
@@ -118,17 +137,44 @@ namespace SpaceInvaders.view
             }
         }
 
+        // Timer
+        public void GameTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            if (game.IsPlayerAlive() == true)
+                game.PhysicsUpdate();
+            if (game.Zoning == true)
+            {
+                newLevel = game.UpdateLevel();
+                drawBuffer = new DrawBuffer(game.Level);
+            }
+            if (drawBuffer.painting == false)
+            {
+                Benchmark.Start();
+                g.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
+                Benchmark.End();
+                Console.WriteLine("Total Time to Complete: " + Benchmark.GetSeconds());
+                drawBuffer.painting = false;
+            }
+        }
+
+        // Thread (DateTime.Now is REALLY EXPENSIVE)
         public void GameLoop()
         {
             bool newLevel = false;
-            while (game.Level.Ship.IsAlive == true)
+            while (game != null && drawBuffer != null)
             {
                 // Timer for logic (40FPS)
                 if (time.AddMilliseconds(25) < DateTime.Now)
                 {
-                    game.PhysicsUpdate();
+                    if (game.IsPlayerAlive() == true)
+                    {
+                        Benchmark.Start();
+                        game.PhysicsUpdate();
+                        Benchmark.End();
+                        Console.WriteLine("Total Time to Complete: " + Benchmark.GetSeconds());
+                    }
                     time = DateTime.Now;
-                    if (game.Level.Ship.IsZoning == true)
+                    if (game.Zoning == true)
                     {
                         Thread.Sleep(2000);
                         newLevel = game.UpdateLevel();
@@ -137,35 +183,28 @@ namespace SpaceInvaders.view
 
                     // Calls GameForm_Paint
                     Invalidate();
-                }
-
-                
-            }
-
-            // GameOver Loop
-            DateTime timer = DateTime.Now;
-            while (game != null && drawBuffer != null)
-            {
-                if (timer.AddMilliseconds(25) < DateTime.Now)
-                {
-                    Invalidate();
-                    timer = DateTime.Now;
+                    Thread.Sleep(10);
                 }
             }
         }
 
         private void GameForm_Paint(object sender, PaintEventArgs e)
         {
+
             if (game != null && drawBuffer != null)
             {
+                //Benchmark.Start();
                 if (drawBuffer.painting == false)
                 {
-                    if (game.Level.Ship.IsAlive == false && !btnStart.Visible)
+                    if (game.IsPlayerAlive() && !btnStart.Visible)
                         btnStart.Show();
-                    e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
+                    //e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
                     // Rendering graphics from here stops flickering (used in conjunction with double buffering)
                 }
+                //Benchmark.End();
+                //Console.WriteLine("Total Time to Complete: " + Benchmark.GetSeconds());
             }
+
         }
 
         // Keypresses for moving
@@ -176,27 +215,23 @@ namespace SpaceInvaders.view
                 if (keyData == Keys.Left || keyData == Keys.A)
                 {
                     // Image faces left initially
-                    if (game.Level.Ship.Direction != left)
-                    {
-                        game.Level.Ship.Direction = left;
-                    }
+                    game.SetPlayerDirection(Directions.left);
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Right || keyData == Keys.D)
                 {
-                    if (game.Level.Ship.Direction != right)
-                    {
-                        game.Level.Ship.Direction = right;
-                    }
+                    game.SetPlayerDirection(Directions.right);
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Space)
                 {
+                    game.SetPlayerDirection(Directions.up);
                     return true;
                 }
                 if (keyData == Keys.S || keyData == Keys.Down)
                 {
-                    game.Level.Ship.IsDucking = true;
+                    game.SetPlayerDirection(Directions.down);
+                    game.SetPlayerDucking(true);
                     return true;
                 }
                 return base.ProcessCmdKey(ref msg, keyData);
@@ -207,50 +242,56 @@ namespace SpaceInvaders.view
             }
         }
 
+        // Timer
+        public void KeypressTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            game.MovingCheck();
+
+            if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
+            {
+                game.AddPlayerVelocity(up);
+            }
+            if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)))
+            {
+                game.AddPlayerVelocity(right);
+            }
+            if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)))
+            {
+                game.AddPlayerVelocity(left);
+
+            }
+            if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
+            {
+                game.SetPlayerDucking(true);
+            }
+        }
+
+        // Thread (DateTime.Now is REALLY EXPENSIVE)
         private void KeyLoop()
         {
             DateTime timer = DateTime.Now;
-            while (game.Level.Ship.IsAlive)
+            while (game.IsPlayerAlive())
             {
                 if (timer.AddMilliseconds(10) < DateTime.Now)
                 {
-                    if (game.Level.Ship.Velocity.X < 0.5 || game.Level.Ship.Velocity.X > -0.5)
-                    {
-                        game.Level.Ship.IsMoving = false;
-                        game.Level.Ship.IsDucking = false;
-                    }
+                    game.MovingCheck();
+
                     if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
                     {
-                        if (game.Level.Ship.IsGrounded == true && game.Level.Ship.IsJumping == false)
-                            game.Level.Ship.Velocity.Y -= 6.3;
-                        else if (game.Level.Ship.Velocity.Y < -1)
-                            game.Level.Ship.Velocity.Y -= 0.04;
-                        game.Level.Ship.IsJumping = true;
-                    }
-                    else
-                    {
-                        game.Level.Ship.IsJumping = false;
+                        game.AddPlayerVelocity(up);
                     }
                     if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)))
                     {
-                        if (game.Level.Ship.IsGrounded)
-                            game.Level.Ship.Velocity.X += 0.2;
-                        else
-                            game.Level.Ship.Velocity.X += 0.1;
-                        game.Level.Ship.IsMoving = true;
+                        game.AddPlayerVelocity(right);
                     }
                     if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)))
                     {
-                        if(game.Level.Ship.IsGrounded)
-                            game.Level.Ship.Velocity.X -= 0.2;
-                        else
-                            game.Level.Ship.Velocity.X -= 0.1;
-                        game.Level.Ship.IsMoving = true;
+                        game.AddPlayerVelocity(left);
 
                     }
                     if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
                     {
-                        game.Level.Ship.IsDucking = true;
+                        game.SetPlayerDucking(true);
                     }
 
                     timer = DateTime.Now;

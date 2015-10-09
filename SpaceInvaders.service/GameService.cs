@@ -17,12 +17,19 @@ namespace SpaceInvaders.service
         private DateTime time = DateTime.Now;
         public Level previous;
         public Level Level { get; set; }
+        public bool Zoning { get; set; }
+        private const int left = 100;
+        private const int right = 101;
+        private const int up = 102;
+        private const int down = 103;
+
 
         public GameService()
         {
             random = new Random();
-            Level = new Level("Level3");
+            Level = new Level("Level1");
             previous = Level;
+            Zoning = false;
         }
 
         public bool UpdateLevel()
@@ -86,7 +93,7 @@ namespace SpaceInvaders.service
                 }
             }
 
-            
+
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
@@ -117,6 +124,87 @@ namespace SpaceInvaders.service
                     QuestionBlock block = (QuestionBlock)brick;
                     ResourceLoader.SwapQuestionBlockImage(Level, block);
                 }
+            }
+        }
+
+        public void AddPlayerVelocity(int direction) // Add direction Enum, or constants
+        {
+            Level.Ship.Direction = direction;
+
+            switch (direction)
+            {
+                case left:
+                    if (Level.Ship.IsGrounded == true)
+                    {
+                        Level.Ship.Velocity.X -= 0.2;
+                    }
+                    else
+                        Level.Ship.Velocity.X -= 0.1;
+                    Level.Ship.IsMoving = true;
+                    break;
+                case right:
+                    if (Level.Ship.IsGrounded == true)
+                    {
+                        Level.Ship.Velocity.X += 0.2;
+                    }
+                    else
+                        Level.Ship.Velocity.X += 0.1;
+                    Level.Ship.IsMoving = true;
+                    break;
+                case up:
+                    if (Level.Ship.IsGrounded == true && Level.Ship.IsJumping == false)
+                    {
+                        Level.Ship.Velocity.Y -= 6.3;
+                        Level.Ship.IsJumping = true;
+                    }
+                    else if (Level.Ship.Velocity.Y < -1)
+                        Level.Ship.Velocity.Y -= 0.07;
+                    else
+                        Level.Ship.IsJumping = false;
+                    break;
+                case down:
+                    //Level.Ship.Velocity.Y += 0.1;
+                    break;
+            }
+        }
+
+        public void SetPlayerDirection(Directions direction)
+        {
+            if (Level.Ship.Direction != (int)direction)
+            {
+                Level.Ship.Direction = (int)direction;
+            }
+        }
+
+        public bool GetPlayerJumping()
+        {
+            return Level.Ship.IsJumping;
+        }
+
+        public void SetPlayerDucking(bool ducking)
+        {
+            if (Level.Ship.IsDucking != ducking)
+            {
+                Level.Ship.IsDucking = ducking;
+            }
+        }
+
+        public bool IsPlayerAlive()
+        {
+            return Level.Ship.IsAlive;
+        }
+
+        public void SetPlayerAlive(bool aliveState)
+        {
+            Level.Ship.IsAlive = aliveState;
+        }
+
+        public void MovingCheck()
+        {
+            if (Level.Ship.Velocity.X < 0.5 || Level.Ship.Velocity.X > -0.5)
+            {
+                Level.Ship.IsMoving = false;
+                Level.Ship.IsDucking = false;
             }
         }
 
