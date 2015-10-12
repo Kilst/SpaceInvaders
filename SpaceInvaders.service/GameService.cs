@@ -18,10 +18,6 @@ namespace SpaceInvaders.service
         public Level previous;
         public Level Level { get; set; }
         public bool Zoning { get; set; }
-        private const int left = 100;
-        private const int right = 101;
-        private const int up = 102;
-        private const int down = 103;
 
 
         public GameService()
@@ -36,6 +32,7 @@ namespace SpaceInvaders.service
         {
             if (Level.Ship.IsZoning == true)
             {
+                
                 string level = Level.Ship.WarpZoneName;
                 Vector2 newPos = Level.Ship.WarpLocation;
                 if (previous != null)
@@ -56,13 +53,16 @@ namespace SpaceInvaders.service
                 else
                     Level = new Level(level);
                 Level.Ship.IsZoning = false;
+                Zoning = true;
                 return true;
             }
+            Level.Ship.IsZoning = false;
             return false;
         }
 
         public void PhysicsUpdate()
         {
+            //UpdateLevel();
             BrickCheck();
             Level.Ship.FallDeathCheck();
             int bulletBills = 0;
@@ -129,11 +129,9 @@ namespace SpaceInvaders.service
 
         public void AddPlayerVelocity(int direction) // Add direction Enum, or constants
         {
-            Level.Ship.Direction = direction;
-
             switch (direction)
             {
-                case left:
+                case (int)Directions.left:
                     if (Level.Ship.IsGrounded == true)
                     {
                         Level.Ship.Velocity.X -= 0.2;
@@ -141,8 +139,9 @@ namespace SpaceInvaders.service
                     else
                         Level.Ship.Velocity.X -= 0.1;
                     Level.Ship.IsMoving = true;
+                    Level.Ship.Direction = direction;
                     break;
-                case right:
+                case (int)Directions.right:
                     if (Level.Ship.IsGrounded == true)
                     {
                         Level.Ship.Velocity.X += 0.2;
@@ -150,8 +149,9 @@ namespace SpaceInvaders.service
                     else
                         Level.Ship.Velocity.X += 0.1;
                     Level.Ship.IsMoving = true;
+                    Level.Ship.Direction = direction;
                     break;
-                case up:
+                case (int)Directions.up:
                     if (Level.Ship.IsGrounded == true && Level.Ship.IsJumping == false)
                     {
                         Level.Ship.Velocity.Y -= 6.3;
@@ -162,17 +162,9 @@ namespace SpaceInvaders.service
                     else
                         Level.Ship.IsJumping = false;
                     break;
-                case down:
+                case (int)Directions.down:
                     //Level.Ship.Velocity.Y += 0.1;
                     break;
-            }
-        }
-
-        public void SetPlayerDirection(Directions direction)
-        {
-            if (Level.Ship.Direction != (int)direction)
-            {
-                Level.Ship.Direction = (int)direction;
             }
         }
 

@@ -160,6 +160,7 @@ namespace SpaceInvaders.logic.Domain
                                 IsZoning = true;
                                 Velocity.X = 0;
                                 Velocity.Y = 0;
+                                IsDucking = false;
                             }
                         }
                         IsGrounded = true;

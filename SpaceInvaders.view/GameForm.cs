@@ -78,8 +78,6 @@ namespace SpaceInvaders.view
         //public static extern int PeekMessage(out NativeMessage message, IntPtr window, uint filterMin, uint filterMax, uint remove);
         #endregion
 
-        Thread thread;
-        Thread keysThread;
         GameService game;
         DateTime time;
         DrawBuffer drawBuffer;
@@ -97,7 +95,7 @@ namespace SpaceInvaders.view
         {
             btnStart.Text = "Reset";
         Start:
-            if (thread == null)
+            if (gameTimer == null)
             {
                 btnStart.Hide();
                 gameTimer = null;
@@ -106,6 +104,7 @@ namespace SpaceInvaders.view
                 g = this.CreateGraphics();
                 game = new GameService();
                 drawBuffer = new DrawBuffer(game.Level);
+                Thread.Sleep(1500);
                 gameTimer = new System.Timers.Timer(25);
                 gameTimer.Elapsed += new ElapsedEventHandler(GameTimedEvent);
                 gameTimer.Enabled = true;
@@ -119,6 +118,11 @@ namespace SpaceInvaders.view
             }
             else
             {
+                gameTimer.Enabled = false;
+                gameTimer.Elapsed -= new ElapsedEventHandler(GameTimedEvent);
+                gameTimer = null;
+                keypressTimer.Enabled = false;
+                keypressTimer.Elapsed -= new ElapsedEventHandler(KeypressTimedEvent);
                 game.SetPlayerAlive(false);
                 time = DateTime.Now;
                 while (time.AddSeconds(2) > DateTime.Now)
@@ -128,9 +132,7 @@ namespace SpaceInvaders.view
                 game.Level.Dispose();
                 game = null;
                 //game.Level.Ship.Direction = left;
-                thread = null;
                 m_filter = null;
-                keysThread = null;
                 m_filter = new KeyMessageFilter();
                 Application.AddMessageFilter(m_filter);
                 goto Start;
@@ -140,19 +142,24 @@ namespace SpaceInvaders.view
         // Timer
         public void GameTimedEvent(object sender, ElapsedEventArgs e)
         {
-            if (game.IsPlayerAlive() == true)
-                game.PhysicsUpdate();
+            game.UpdateLevel();
             if (game.Zoning == true)
             {
-                newLevel = game.UpdateLevel();
+                // Needed otherwise timer ticks and calls g.DrawUnscaledImage
+                // and we get an object in use due to the new drawBuffer instantation.
                 drawBuffer = new DrawBuffer(game.Level);
+                Thread.Sleep(1500);
+                game.Zoning = false;
             }
-            if (drawBuffer.painting == false)
+            if (game.IsPlayerAlive() == true && game.Zoning != true)
+                game.PhysicsUpdate();
+
+            if (drawBuffer.painting == false && game.Zoning != true)
             {
                 Benchmark.Start();
                 g.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
                 Benchmark.End();
-                Console.WriteLine("Total Time to Complete: " + Benchmark.GetSeconds());
+                Console.WriteLine("Total Time to Draw Scene: {0}", Benchmark.GetSeconds());
                 drawBuffer.painting = false;
             }
         }
@@ -199,6 +206,7 @@ namespace SpaceInvaders.view
                     if (game.IsPlayerAlive() && !btnStart.Visible)
                         btnStart.Show();
                     //e.Graphics.DrawImageUnscaled(drawBuffer.Draw(game), Point.Empty);
+                    //drawBuffer.painting = false;
                     // Rendering graphics from here stops flickering (used in conjunction with double buffering)
                 }
                 //Benchmark.End();
@@ -214,24 +222,18 @@ namespace SpaceInvaders.view
             {
                 if (keyData == Keys.Left || keyData == Keys.A)
                 {
-                    // Image faces left initially
-                    game.SetPlayerDirection(Directions.left);
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Right || keyData == Keys.D)
                 {
-                    game.SetPlayerDirection(Directions.right);
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Space)
                 {
-                    game.SetPlayerDirection(Directions.up);
                     return true;
                 }
                 if (keyData == Keys.S || keyData == Keys.Down)
                 {
-                    game.SetPlayerDirection(Directions.down);
-                    game.SetPlayerDucking(true);
                     return true;
                 }
                 return base.ProcessCmdKey(ref msg, keyData);
@@ -248,22 +250,15 @@ namespace SpaceInvaders.view
             game.MovingCheck();
 
             if (m_filter.IsKeyPressed(Keys.Up) || m_filter.IsKeyPressed(Keys.W) || m_filter.IsKeyPressed(Keys.Space))
-            {
                 game.AddPlayerVelocity(up);
-            }
             if ((m_filter.IsKeyPressed(Keys.Right) || m_filter.IsKeyPressed(Keys.D)))
-            {
                 game.AddPlayerVelocity(right);
-            }
             if ((m_filter.IsKeyPressed(Keys.Left) || m_filter.IsKeyPressed(Keys.A)))
-            {
                 game.AddPlayerVelocity(left);
-
-            }
             if (m_filter.IsKeyPressed(Keys.S) || m_filter.IsKeyPressed(Keys.Down))
-            {
                 game.SetPlayerDucking(true);
-            }
+            else
+                game.SetPlayerDucking(false);
         }
 
         // Thread (DateTime.Now is REALLY EXPENSIVE)
@@ -301,11 +296,6 @@ namespace SpaceInvaders.view
 
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // End threads on closing
-            if (thread != null && thread.IsAlive == true)
-                thread.Abort();
-            if (keysThread != null && keysThread.IsAlive == true)
-                keysThread.Abort();
             if (game != null)
                 game.Dispose();
         }

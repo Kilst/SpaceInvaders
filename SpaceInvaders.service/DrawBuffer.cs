@@ -25,11 +25,10 @@ namespace SpaceInvaders.service
         {
             thisLevel = level;
             buffer = new Bitmap(734, 400);
-            spriteBuffer = new Bitmap(734, 400);
             currentlyAnimating = false;
             for (int i = 0; i < thisLevel.gifs.Count(); i++)
             {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(this.RunAnimation), (int)i);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(this.RunAnimation), i);
             }
         }
 
@@ -62,20 +61,21 @@ namespace SpaceInvaders.service
         {
             painting = true;
             graphics = Graphics.FromImage(buffer);
-            //graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-            //graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
-            //graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-            //graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            //graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-
-            ImageAnimator.UpdateFrames();
-            // Render graphics
             if (game.Level.Ship.IsZoning)
             {
                 graphics.Clear(Color.Black);
                 graphics.DrawImage(game.Level.loadingImage, 0, 0, 700, 300);
             }
-            else if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
+            
+            //graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
+            graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
+            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+
+            ImageAnimator.UpdateFrames();
+            // Render graphics
+            if (game != null && !game.Level.Ship.IsZoning && game.Level.Ship.IsAlive)
             {
                 // Rendering order is important
                 graphics.DrawImage(game.Level.backgroundImage, new Point(0, 0));
@@ -175,13 +175,13 @@ namespace SpaceInvaders.service
                 //AnimateImage(game.Level.Ship.Bitmap);
                 //ImageAnimator.UpdateFrames();
                 // Draw Mario
-                if (game.Level.Ship.IsMoving && game.Level.Ship.IsGrounded)
+                if (game.Level.Ship.IsMoving && game.Level.Ship.IsGrounded && !game.Level.Ship.IsZoning)
                     graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.gifs[4], 1), (int)game.Level.Ship.Position.X,
                                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
-                else
+                else if (!game.Level.Ship.IsZoning)
                     graphics.DrawImage(game.Level.Ship.FlipShipImage(game.Level.shipImage, 2), (int)game.Level.Ship.Position.X,
                                         (int)game.Level.Ship.Position.Y, game.Level.Ship.Width, game.Level.Ship.Height);
-                if (thisLevel.foregroundImage != null)
+                if (thisLevel.foregroundImage != null && !game.Level.Ship.IsZoning)
                     graphics.DrawImage(game.Level.foregroundImage, new Point((int)thisLevel.offsetX, (int)thisLevel.offsetY - 302));
             }
             else if (game != null && !game.Level.Ship.IsZoning)
