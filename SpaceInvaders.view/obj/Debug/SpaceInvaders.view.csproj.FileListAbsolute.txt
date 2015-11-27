@@ -35,3 +35,77 @@ C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resou
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\invisiblePlatform.png
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\platformGrey.png
 C:\Users\Kilst\Documents\GitHub\SpaceInvaders\SpaceInvaders.view\bin\Debug\Resources\platformWooden.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe.config
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\bigMario.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\bulletBill.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\cloudsBG.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\coin.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\GameData.xml
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\gameOver.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\goomba.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\ground.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\invisiblePlatform.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\koopagreen.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\loading.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\mario.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\mario.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\marioCoin.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\marioPipe.PNG
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\mariosprite.jpg
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\platformGrey.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\platformWooden.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\questionBlock.gif
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\questionBlock.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\skyBackground.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\stripeForeground.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\usedBlock.png
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\Resources\wall.bmp
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.GameForm.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.Properties.Resources.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceInvaders-master\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe.config
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\bigMario.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\bulletBill.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\cloudsBG.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\coin.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\GameData.xml
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\gameOver.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\goomba.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\ground.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\invisiblePlatform.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\koopagreen.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\loading.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\mario.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\mario.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\marioCoin.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\marioPipe.PNG
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\mariosprite.jpg
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\platformGrey.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\platformWooden.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\questionBlock.gif
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\questionBlock.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\skyBackground.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\stripeForeground.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\usedBlock.png
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\Resources\wall.bmp
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.exe
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.view.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.dll
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.dll
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.logic.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\bin\Debug\SpaceInvaders.service.pdb
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.GameForm.resources
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.Properties.Resources.resources
+C:\Users\Kilst\Documents\GitHub\SpaceInvaders - Copy\SpaceInvaders.view\obj\Debug\SpaceInvaders.view.csproj.GenerateResource.Cache

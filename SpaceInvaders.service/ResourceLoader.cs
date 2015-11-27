@@ -17,8 +17,8 @@ namespace SpaceInvaders.service
             // Load bitmaps
             level.loadingImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\loading.gif");
             level.gameOver = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\gameOver.gif");
-            GetGameObjects(level, level.Name, "Foregrounds");
-            GetGameObjects(level, level.Name, "Backgrounds");
+            GetGameObjects(level, level.LevelName, "Foregrounds");
+            GetGameObjects(level, level.LevelName, "Backgrounds");
             level.platformImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\wall.bmp");
             level.platformGreyImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\platformGrey.png");
             level.platformWoodenImage = (Bitmap)Image.FromFile(Environment.CurrentDirectory + @"\Resources\platformWooden.png");

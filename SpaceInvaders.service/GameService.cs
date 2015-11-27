@@ -17,27 +17,23 @@ namespace SpaceInvaders.service
         private DateTime time = DateTime.Now;
         public Level previous;
         public Level Level { get; set; }
-        public bool Zoning { get; set; }
-
 
         public GameService()
         {
             random = new Random();
             Level = new Level("Level1");
             previous = Level;
-            Zoning = false;
         }
 
         public bool UpdateLevel()
         {
             if (Level.Ship.IsZoning == true)
             {
-                
                 string level = Level.Ship.WarpZoneName;
                 Vector2 newPos = Level.Ship.WarpLocation;
                 if (previous != null)
                 {
-                    if (level != previous.Name)
+                    if (level != previous.LevelName)
                     {
                         Level = new Level(level);
                         //Level.Ship.Position = newPos;
@@ -53,16 +49,13 @@ namespace SpaceInvaders.service
                 else
                     Level = new Level(level);
                 Level.Ship.IsZoning = false;
-                Zoning = true;
                 return true;
             }
-            Level.Ship.IsZoning = false;
             return false;
         }
 
         public void PhysicsUpdate()
         {
-            //UpdateLevel();
             BrickCheck();
             Level.Ship.FallDeathCheck();
             int bulletBills = 0;
@@ -93,7 +86,7 @@ namespace SpaceInvaders.service
                 }
             }
 
-
+            
 
             // Polymorphism :)
             Level.Ship.CollisionCheck(Level.Platforms);
@@ -127,79 +120,6 @@ namespace SpaceInvaders.service
             }
         }
 
-        public void AddPlayerVelocity(int direction) // Add direction Enum, or constants
-        {
-            switch (direction)
-            {
-                case (int)Directions.left:
-                    if (Level.Ship.IsGrounded == true)
-                    {
-                        Level.Ship.Velocity.X -= 0.2;
-                    }
-                    else
-                        Level.Ship.Velocity.X -= 0.1;
-                    Level.Ship.IsMoving = true;
-                    Level.Ship.Direction = direction;
-                    break;
-                case (int)Directions.right:
-                    if (Level.Ship.IsGrounded == true)
-                    {
-                        Level.Ship.Velocity.X += 0.2;
-                    }
-                    else
-                        Level.Ship.Velocity.X += 0.1;
-                    Level.Ship.IsMoving = true;
-                    Level.Ship.Direction = direction;
-                    break;
-                case (int)Directions.up:
-                    if (Level.Ship.IsGrounded == true && Level.Ship.IsJumping == false)
-                    {
-                        Level.Ship.Velocity.Y -= 6.3;
-                        Level.Ship.IsJumping = true;
-                    }
-                    else if (Level.Ship.Velocity.Y < -1)
-                        Level.Ship.Velocity.Y -= 0.07;
-                    else
-                        Level.Ship.IsJumping = false;
-                    break;
-                case (int)Directions.down:
-                    //Level.Ship.Velocity.Y += 0.1;
-                    break;
-            }
-        }
-
-        public bool GetPlayerJumping()
-        {
-            return Level.Ship.IsJumping;
-        }
-
-        public void SetPlayerDucking(bool ducking)
-        {
-            if (Level.Ship.IsDucking != ducking)
-            {
-                Level.Ship.IsDucking = ducking;
-            }
-        }
-
-        public bool IsPlayerAlive()
-        {
-            return Level.Ship.IsAlive;
-        }
-
-        public void SetPlayerAlive(bool aliveState)
-        {
-            Level.Ship.IsAlive = aliveState;
-        }
-
-        public void MovingCheck()
-        {
-            if (Level.Ship.Velocity.X < 0.5 || Level.Ship.Velocity.X > -0.5)
-            {
-                Level.Ship.IsMoving = false;
-                Level.Ship.IsDucking = false;
-            }
-        }
-
         private void ScreenCheck()
         {
             // Check whether we move the screen or not
@@ -230,27 +150,27 @@ namespace SpaceInvaders.service
             foreach (Platform platform in Level.Platforms)
             {
                 platform.MovePosition(direction);
-                //platform.GetBounds();
+                platform.GetBounds();
             }
             foreach (DestroyableBrick platform in Level.DestroyableBricks)
             {
                 platform.MovePosition(direction);
-                //platform.GetBounds();
+                platform.GetBounds();
             }
             foreach (WarpPipe warpPipe in Level.WarpPipes)
             {
                 warpPipe.MovePosition(direction);
-                //warpPipe.GetBounds();
+                warpPipe.GetBounds();
             }
             foreach (Coin coin in Level.Coins)
             {
                 coin.MovePosition(direction);
-                //coin.GetBounds();
+                coin.GetBounds();
             }
             foreach (Enemy enemy in Level.Enemies)
             {
                 enemy.MovePosition(direction);
-                //enemy.GetBounds();
+                enemy.GetBounds();
             }
         }
 

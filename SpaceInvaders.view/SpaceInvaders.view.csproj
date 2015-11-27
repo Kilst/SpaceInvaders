@@ -34,7 +34,6 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -83,6 +82,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpaceInvaders.logic\SpaceInvaders.logic.csproj">
+      <Project>{d1ff3056-a9c1-4347-8083-0efa9a1bb439}</Project>
+      <Name>SpaceInvaders.logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpaceInvaders.service\SpaceInvaders.service.csproj">
       <Project>{8427d235-6824-4f5c-b9d0-389de7f06b07}</Project>
       <Name>SpaceInvaders.service</Name>

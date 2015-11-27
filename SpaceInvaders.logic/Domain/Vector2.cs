@@ -29,6 +29,7 @@ namespace SpaceInvaders.logic.Domain
             bool XCheck = false;
             bool YCheck = false;
 
+            // Test the calling vector2 against vector2 compare
             if (this.X > compare.X)
                 XCheck = true;
             else

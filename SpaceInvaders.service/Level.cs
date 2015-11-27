@@ -40,11 +40,11 @@ namespace SpaceInvaders.service
         public SpaceShip Ship { get; set; }
         public List<GameObject> Enemies { get; set; }
         public int BulletBillCount { get; set; }
-        public string Name { get; set; }
+        public string LevelName { get; set; }
 
         public Level(string level)
         {
-            Name = level;
+            LevelName = level;
             ResourceLoader.LoadBitmaps(this);
             Ship = new SpaceShip(17, 30, 0, new Vector2(3, 8), new Vector2(120, 100), shipImage);
             Enemies = new List<GameObject>();
@@ -55,14 +55,14 @@ namespace SpaceInvaders.service
             gifs = new Bitmap[5];
 
             // GetEnemies
-            ResourceLoader.GetGameObjects(this, level, "Enemies");
+            ResourceLoader.GetGameObjects(this, LevelName, "Enemies");
             // GetPlatforms/Pipes
-            ResourceLoader.GetGameObjects(this, level, "Platforms");
-            ResourceLoader.GetGameObjects(this, level, "DestroyableBricks");
+            ResourceLoader.GetGameObjects(this, LevelName, "Platforms");
+            ResourceLoader.GetGameObjects(this, LevelName, "DestroyableBricks");
             // GetWarpPipes
-            ResourceLoader.GetGameObjects(this, level, "WarpPipes");
+            ResourceLoader.GetGameObjects(this, LevelName, "WarpPipes");
             // GetCoins
-            ResourceLoader.GetGameObjects(this, level, "Coins");
+            ResourceLoader.GetGameObjects(this, LevelName, "Coins");
             CountBulletBills();
             gifs[0] = npcImage;
             gifs[1] = koopaImage;
